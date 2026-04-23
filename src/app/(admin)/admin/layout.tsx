@@ -65,7 +65,7 @@ export default function AdminLayout({
                 PP
               </div>
               <span className="text-lg font-bold text-white">Heathrow Safe Parking</span> */}
-              <Image src="/white_logo.svg" alt="Logo" width={200} height={50} />
+              <Image src="/logo.svg" alt="Logo" width={200} height={50} />
               {/* <p className="flex items-center text-lg text-primary uppercase leading-none">
                 <span className="font-bold">Park</span>
                 <span className="font-normal">Pro</span>

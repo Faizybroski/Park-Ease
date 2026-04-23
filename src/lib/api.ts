@@ -135,12 +135,16 @@ class ApiClient {
     page?: number;
     limit?: number;
     search?: string;
+    dateFrom?: string;
+    dateTo?: string;
   }): Promise<ApiResponse<PaginatedResponse<Booking>>> {
     const searchParams = new URLSearchParams();
     if (params.status) searchParams.set("status", params.status);
     if (params.page) searchParams.set("page", String(params.page));
     if (params.limit) searchParams.set("limit", String(params.limit));
     if (params.search) searchParams.set("search", params.search);
+    if (params.dateFrom) searchParams.set("dateFrom", params.dateFrom);
+    if (params.dateTo) searchParams.set("dateTo", params.dateTo);
     return this.request(`/admin/bookings?${searchParams.toString()}`);
   }
 

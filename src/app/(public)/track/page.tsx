@@ -115,16 +115,9 @@ function TrackContent() {
             <button
               type="submit"
               disabled={loading}
-              className="relative overflow-hidden rounded-full px-8 py-3.5 font-bold text-white transition-all hover:opacity-90 disabled:opacity-50 bg-primary"
+              className="relative overflow-hidden rounded-full px-8 flex justify-center py-3.5 font-bold text-white transition-all hover:opacity-90 disabled:opacity-50 bg-primary hover:bg-white border border-primary hover:text-primary"
             >
-              <div className="absolute inset-0 z-0 pointer-events-none">
-              <NoiseTexture
-                frequency={1}
-                octaves={10}
-                slope={0.6}
-                noiseOpacity={1}
-              />
-            </div>
+              
               {loading ? "..." : "Track"}
             </button>
           </div>

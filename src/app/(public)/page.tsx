@@ -54,6 +54,7 @@ import { NoiseTexture } from "@/components/ui/noise-texture";
 import { motion, AnimatePresence } from "framer-motion";
 import { BusinessTier } from "@/types";
 import { formatDayCount, formatPrice } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -87,6 +88,35 @@ const features = [
 ];
 
 const reviews = [
+  {
+    name: "Milon Zahino",
+    location: "Birmingham",
+    text: `Driving around, wasting time, hoping to find a spot — it used to be one of the most frustrating parts of my trips. I’d leave early just to account for parking uncertainty, and even then, I’d sometimes end up stressed before my journey even began.
+
+Since I started using this service, that entire experience has completely changed. I can search, compare, and reserve a space in seconds, and I know exactly where I’m going before I even leave home. When I arrive, everything is exactly as expected — no surprises, no confusion.
+
+It’s honestly saved me a huge amount of time and mental energy. What used to feel like chaos is now a smooth, predictable part of my routine. I didn’t realize how much I needed this until I started using it.`,
+  },
+  {
+    name: "Sarah Khan",
+    location: "London",
+    text: `I travel frequently for work, and parking has always been one of those small but constant headaches. Comparing options across different websites, worrying about security, and not knowing if I was getting a fair price — it all added up.
+
+What I love about this platform is how simple and transparent everything is. Within seconds, I can see all available options, compare prices, and choose what works best for me. The booking process is incredibly straightforward, and the confirmations give me confidence that everything is taken care of.
+
+The biggest difference for me is peace of mind. I no longer second-guess my choices or worry about last-minute issues. It just works — and that’s exactly what you want when you’re traveling.`,
+  },
+  {
+    name: "James Carter",
+    location: "Manchester",
+    text: `Before using this, airport parking always felt like a gamble. Sometimes I’d overpay, other times I’d end up far from the terminal with confusing directions. It was never a consistent experience.
+
+This platform changed that completely. The ability to compare multiple providers in one place is a game changer. I can clearly see pricing, distance, and features, and make a decision in minutes instead of spending hours researching.
+
+What impressed me most is how reliable everything has been. Every booking I’ve made has gone smoothly, and the service has been exactly as described each time. It’s made my travel routine far more efficient and a lot less stressful.
+
+At this point, I wouldn’t go back to doing it the old way. This just makes too much sense.`,
+  },
   {
     name: "Milon Zahino",
     location: "Birmingham",
@@ -178,6 +208,122 @@ const getItemVariant = (i: number) => ({
   },
 });
 
+// const variants = {
+//   active: {
+//     rotateY: 0,
+//     x: 0,
+//     y: 0,
+//     scale: 1,
+//     opacity: 1,
+//     zIndex: 30,
+//   },
+//   next: {
+//     rotateY: -20,
+//     x: 60,
+//     y: 20,
+//     scale: 0.95,
+//     opacity: 0.7,
+//     zIndex: 20,
+//   },
+//   prev: {
+//     rotateY: 20,
+//     x: -60,
+//     y: 20,
+//     scale: 0.95,
+//     opacity: 0.7,
+//     zIndex: 20,
+//   },
+//   hidden: {
+//     rotateY: 0,
+//     x: 0,
+//     y: 40,
+//     scale: 0.9,
+//     opacity: 0,
+//     zIndex: 0,
+//   },
+// };
+// const variants = {
+//   // active: (direction: number) => ({
+//   //   rotateY: 0,
+//   //   x: 0,
+//   //   y: 0,
+//   //   scale: 1,
+//   //   opacity: 1,
+//   //   zIndex: 30,
+//   //   transition: { duration: 0.6, ease: "easeInOut" },
+//   // }),
+//   active: (direction: number) => ({
+//     rotateY: 0,
+//     x: 0,
+//     y: 0,
+//     scale: 1,
+//     opacity: 1,
+//     zIndex: 30,
+//     transition: {
+//       duration: 0.6,
+//       ease: [0.22, 1, 0.36, 1] as const, // smoother cinematic curve
+//     },
+//   }),
+
+//   next: (direction: number) => ({
+//     rotateY: -15,
+//     x: 40,
+//     y: 20,
+//     scale: 0.96,
+//     opacity: 0.7,
+//     zIndex: 20,
+//   }),
+
+//   prev: (direction: number) => ({
+//     rotateY: 15,
+//     x: -40,
+//     y: 20,
+//     scale: 0.96,
+//     opacity: 0.7,
+//     zIndex: 20,
+//   }),
+
+//   hidden: (direction: number) => ({
+//     rotateY: direction > 0 ? -60 : 60,
+//     x: direction > 0 ? 120 : -120,
+//     y: 40,
+//     scale: 0.9,
+//     opacity: 0,
+//     zIndex: 0,
+//   }),
+// };
+const variants = {
+  position: (pos: number) => {
+    const abs = Math.abs(pos);
+    const CARD_WIDTH = 420;
+    const EDGE = 10;
+    // const SHIFT = 200;
+    const SHIFT = 50;
+
+    return {
+      //      x:
+      // pos === 0
+      //   ? 0
+      //   : pos > 0
+      //   ? CARD_WIDTH - EDGE
+      //   : -(CARD_WIDTH - EDGE),
+      x: pos * SHIFT,
+      y: abs === 0 ? 0 : 40,
+      scale: pos === 0 ? 1 : abs === 1 ? 0.95 : 0.9,
+      rotateY: pos === 0 ? 0 : pos > 0 ? -20 : 20,
+      // rotateY: pos === 0 ? 0 : pos > 0 ? -35 : 35,
+      opacity: abs > 2 ? 0 : 1,
+      zIndex: 30 - abs,
+      filter: abs === 0 ? "none" : "blur(1px)",
+      transition: {
+        type: "spring",
+        stiffness: 120,
+        damping: 18,
+      },
+    };
+  },
+};
+
 const parallaxPanelClass = "";
 
 type Feature = (typeof features)[number];
@@ -252,7 +398,9 @@ function FeatureCard({ feature }: { feature: Feature }) {
         <Icon className="w-8 h-8 dark:text-white" />
       </div>
 
-      <h3 className="text-xl font-semibold mb-3 dark:text-white">{feature.title}</h3>
+      <h3 className="text-xl font-semibold mb-3 dark:text-white">
+        {feature.title}
+      </h3>
       <p className="dark:text-white font-light">{feature.desc}</p>
     </div>
   );
@@ -288,7 +436,6 @@ function ParallaxSection({
 // ─── Main Page ────────────────────────────────────────────────────────────────
 export default function CompareHeathrowParking() {
   const { theme } = useTheme();
-
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
@@ -317,13 +464,20 @@ export default function CompareHeathrowParking() {
     loading: true,
   });
 
+  // const next = () => {
+  //   setDirection(1);
+  //   setIndex((prev) => (prev + 1) % reviews.length);
+  // };
+
+  // const prev = () => {
+  //   setDirection(-1);
+  //   setIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
+  // };
   const next = () => {
-    setDirection(1);
     setIndex((prev) => (prev + 1) % reviews.length);
   };
 
   const prev = () => {
-    setDirection(-1);
     setIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
   };
 
@@ -398,41 +552,6 @@ export default function CompareHeathrowParking() {
       window.removeEventListener("resize", resizeCanvas);
     };
   }, []);
-
-  // useEffect(() => {
-  //   const ctx = gsap.context(() => {
-  //     const frames = gsap.utils.toArray<HTMLElement>(".hero-frame");
-
-  //     // Show first frame initially
-  //     gsap.set(frames[0], { opacity: 1 });
-
-  //     const tl = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: heroRef.current,
-  //         start: "top top",
-  //         end: "+=2000", // controls scroll length
-  //         scrub: true,
-  //         pin: true, // 🔥 THIS is the magic
-  //         anticipatePin: 1,
-  //       },
-  //     });
-
-  //     frames.forEach((frame, i) => {
-  //       if (i === 0) return;
-
-  //       tl.to(
-  //         frame,
-  //         {
-  //           opacity: 1,
-  //           duration: 1,
-  //         },
-  //         i, // stagger timing
-  //       );
-  //     });
-  //   }, heroRef);
-
-  //   return () => ctx.revert();
-  // }, []);
 
   useEffect(() => {
     const sticky = stickyRef.current;
@@ -516,16 +635,6 @@ export default function CompareHeathrowParking() {
       });
   }, []);
 
-  // fetch starting (day-1) price on mount
-  // useEffect(() => {
-  //   api
-  //     .getStartingDayPrice()
-  //     .then((res) =>
-  //       setPrice((p) => ({ ...p, startingPrice: res.data, loading: false })),
-  //     )
-  //     .catch(() => setPrice((p) => ({ ...p, loading: false })));
-  // }, []);
-
   const handleQuickBook = (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (startDate && endDate) {
@@ -537,61 +646,18 @@ export default function CompareHeathrowParking() {
     }
   };
 
-  // recalculate price whenever both dates are chosen
-  // const fetchCalculatedPrices = useCallback(
-  //   (dropOffDate: string, pickUpDate: string) => {
-  //     if (!dropOffDate || !pickUpDate) return;
-  //     setPrice((p) => ({ ...p, loading: true }));
-  //     api
-  //       .calculatePrice(
-  //         new Date(dropOffDate).toISOString(),
-  //         new Date(pickUpDate).toISOString(),
-  //       )
-  //       .then((res) =>
-  //         setPrice((p) => ({
-  //           ...p,
-  //           totalPrice: res.data.finalPrice,
-  //           totalDays: res.data.totalDays,
-  //           loading: false,
-  //         })),
-  //       )
-  //       .catch(() => setPrice((p) => ({ ...p, loading: false })));
-  //   },
-  //   [],
-  // );
-
-  // const handleDropOffChange = (val: string) => {
-  //   setDropOff(val);
-  //   if (val && pickUp) fetchCalculatedPrices(val, pickUp);
+  //   const getPosition = (i: number) => {
+  //   if (i === index) return "active";
+  //   if (i === (index + 1) % reviews.length) return "next";
+  //   if (i === (index - 1 + reviews.length) % reviews.length) return "prev";
+  //   return "hidden";
   // };
-
-  // const handlePickUpChange = (val: string) => {
-  //   setPickUp(val);
-  //   if (dropOff && val) fetchCalculatedPrices(dropOff, val);
-  // };
-
-  // const datesSelected = Boolean(dropOff && pickUp);
-
-  // const handleSearch = () => {
-  //   setSearchError("");
-  //   if (!startDate || !endDate) {
-  //     setSearchError("Please select both a drop-off and pick-up date & time.");
-  //     return;
-  //   }
-  //   const start = new Date(startDate);
-  //   const end = new Date(endDate);
-  //   if (start <= new Date()) {
-  //     setSearchError("Drop-off must be in the future.");
-  //     return;
-  //   }
-  //   if (end <= start) {
-  //     setSearchError("Pick-up must be after drop-off.");
-  //     return;
-  //   }
-  //   router.push(
-  //     `/book?start=${encodeURIComponent(start.toISOString())}&end=${encodeURIComponent(end.toISOString())}`,
-  //   );
-  // };
+  const getPosition = (i: number) => {
+    if (i === index) return "active";
+    if (i === (index + 1) % reviews.length) return "next";
+    if (i === (index - 1 + reviews.length) % reviews.length) return "prev";
+    return "hidden";
+  };
 
   return (
     <div className="min-h-screen bg-background page-bg overflow-x-hidden">
@@ -601,7 +667,7 @@ export default function CompareHeathrowParking() {
       > */}
       <section
         ref={heroRef}
-        className="relative w-full min-h-[100svh] overflow-visible  z-20"
+        className="relative w-full min-h-[100svh] overflow-visible z-20"
       >
         {/* Background: canvas + overlay + bottom fade */}
         <div className="absolute inset-0">
@@ -617,14 +683,14 @@ export default function CompareHeathrowParking() {
         </div>
 
         {/* Content: title at top, search anchored to bottom */}
-        <div className="relative z-10 h-full flex flex-col justify-between max-w-7xl mx-auto w-full px-4 sm:px-8 lg:px-16 pt-20 sm:pt-24 md:pt-28 pb-20 sm:pb-24 lg:pb-28">
+        <div className="relative z-10 h-full flex flex-col justify-between max-w-7xl mx-auto w-full px-4 sm:px-8 lg:px-10 pt-20 sm:pt-24 md:pt-40 pb-20 sm:pb-24 lg:pb-28">
           {/* Title block */}
           <div className="max-w-2xl text-center sm:text-left">
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.7 }}
-              className="font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-tight tracking-tight text-white mb-3 sm:mb-4 font-zuume"
+              className="font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-tight text-white mb-3 sm:mb-2 font-zuume"
             >
               Parking, Made Effortless
             </motion.h1>
@@ -645,7 +711,7 @@ export default function CompareHeathrowParking() {
             id="search"
             className="w-full relative translate-y-[30%] sm:translate-y-[40%] lg:translate-y-1/2 z-30"
           >
-            <div className="relative w-full max-w-6xl ">
+            <div className="relative w-full max-w-7xl ">
               <div className="absolute -top-9 left-0 px-4 py-2 rounded-t-xl bg-white/10 backdrop-blur-xl border border-b-0 border-white/30 text-white text-sm font-semibold">
                 PreBooking
               </div>
@@ -658,7 +724,7 @@ export default function CompareHeathrowParking() {
                         <Label className="text-sm font-medium text-white mb-2 block">
                           Select Airport
                         </Label>
-                        <AirportPopover />
+                        <AirportPopover homepage/>
                       </div>
                       <div>
                         <Label className="text-sm font-medium text-white mb-2 block">
@@ -687,7 +753,7 @@ export default function CompareHeathrowParking() {
                         />
                       </div>
                     </div>
-                    <Button className="bg-primary w-full text-base font-semibold h-11">
+                    <Button className="bg-primary w-full text-base font-semibold h-14 hover:bg-white hover:text-primary">
                       Book Now
                     </Button>
                   </form>
@@ -706,7 +772,7 @@ export default function CompareHeathrowParking() {
           ref={stickyRef}
           className="min-h-screen md:h-screen flex items-center justify-center overflow-visible py-16 md:py-0"
         >
-          <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-4 px-4 sm:px-8 lg:px-16">
+          <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-4 px-4 sm:px-8 lg:px-10">
             <div ref={card1Ref} className="lg:col-span-2">
               <FeatureCard feature={features[0]} />
             </div>
@@ -720,8 +786,10 @@ export default function CompareHeathrowParking() {
         </div>
       </section>
 
-      <ParallaxSection image={`${theme === "dark" ? "/dark_parallex1.png" : "/parallex1.png" }`}>
-        <section className="relative z-10 px-4 py-14 sm:px-8 sm:py-16 lg:px-16 lg:py-20">
+      <ParallaxSection
+        image={`${theme === "dark" ? "/dark_parallex1.png" : "/parallex1.png"}`}
+      >
+        <section className="relative z-10 px-4 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
           {/* Background image (right side fade) */}
           {/* <div className="absolute inset-0">
             <img
@@ -734,7 +802,7 @@ export default function CompareHeathrowParking() {
 
           {/* Content */}
           <div
-            className={`relative z-10 max-w-7xl mx-auto px-6 py-8 sm:px-10 sm:py-10 lg:px-12 ${parallaxPanelClass}`}
+            className={`relative z-10 max-w-7xl mx-auto px-6 py-8 sm:px-10 sm:pt-10 sm:pb-2 lg:px-1 ${parallaxPanelClass}`}
           >
             {/* Heading */}
             <h2 className="font-bold tracking-tight mb-6">
@@ -788,11 +856,11 @@ export default function CompareHeathrowParking() {
           </div>
         </section>
 
-        <section className="relative z-10 px-4 sm:px-8  lg:px-16 ">
+        <section className="relative z-10 px-4 sm:px-8 lg:px-10 ">
           <div
-            className={`max-w-7xl mx-auto px-6 py-6 sm:px-10 sm:py-8  ${parallaxPanelClass}`}
+            className={`max-w-7xl mx-auto px-6 py-6 sm:px-1 sm:py-8  ${parallaxPanelClass}`}
           >
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center py-10 border-t">
+            <div className="flex sm:flex-row flex-col justify-between gap-10 text-center py-10 border-t">
               <div>
                 <h3 className="text-4xl sm:text-5xl font-bold text-primaryblue dark:text-white mb-2">
                   <Counter value={25400} suffix="+" />
@@ -901,7 +969,7 @@ export default function CompareHeathrowParking() {
 
                       <CardHeader className="p-6 pb-3">
                         <div className="flex items-start justify-between gap-2">
-                          <CardTitle className="text-xl font-bold text-primary dark:text-primaryblue">
+                          <CardTitle className="text-xl font-bold text-primaryblue  dark:text-white">
                             {tier.name}
                           </CardTitle>
                           {i === 1 && tiers.length >= 3 && (
@@ -919,10 +987,10 @@ export default function CompareHeathrowParking() {
 
                         {/* Price badge */}
                         <div className="mt-5 flex items-end gap-1">
-                          <span className="text-3xl font-extrabold text-primaryblue leading-none">
+                          <span className="text-3xl font-extrabold text-primaryblue leading-none dark:text-white">
                             {formatPrice(tier.firstTenDayPrices[0] ?? 0)}
                           </span>
-                          <span className="text-sm text-muted-foreground mb-0.5">
+                          <span className="text-sm text-muted-foreground mb-0.5 ">
                             /day
                           </span>
                         </div>
@@ -941,7 +1009,7 @@ export default function CompareHeathrowParking() {
                                 key={idx}
                                 className="flex items-start gap-2.5 text-sm"
                               >
-                                <CheckCircle2 className="h-4 w-4 mt-0.5 shrink-0 text-emerald-500" />
+                                <CheckCircle2 className="h-4 w-4 mt-0.5 shrink-0 text-emerald-500 dark:text-primaryblue" />
                                 <span className="text-foreground leading-snug">
                                   {f}
                                 </span>
@@ -952,7 +1020,7 @@ export default function CompareHeathrowParking() {
 
                         <Button
                           onClick={handleQuickBook}
-                          className="mt-6 w-full rounded-xl"
+                          className="mt-6 w-full rounded-xl hover:bg-primaryblue hover:text-white"
                           variant={
                             i === 1 && tiers.length >= 3 ? "default" : "outline"
                           }
@@ -969,48 +1037,9 @@ export default function CompareHeathrowParking() {
         </section>
       </ParallaxSection>
 
-      {/* <section id="faq" className="py-16 sm:py-20 px-4 sm:px-8 lg:px-16">
-        <div className=" mx-auto">
-          <div className="flex-1">
-            <h2 className="text-4xl sm:text-7xl text-primaryblue text-center font-extrabold font-zuume">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-center text-primaryblue/60 mb-6">
-              Everything you need to know about comparing and booking.
-            </p>
-
-            <div className="flex flex-col max-w-xl mx-auto">
-              {faqs.map((q, i) => (
-                <div key={i} className="border-b">
-                  <button
-                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="w-full flex items-center justify-between py-3 text-left"
-                  >
-                    <span className="font-semibold text-foreground text-base sm:text-lg pr-4">
-                      {q}
-                    </span>
-                    <ChevronDown
-                      className={`w-4 h-4 text-muted-foreground shrink-0 transition-transform duration-200 ${
-                        openFaq === i ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
-                  {openFaq === i && (
-                    <p className="text-muted-foreground text-sm pb-4 leading-relaxed">
-                      We compare prices from all major trusted Heathrow parking
-                      providers in real-time. Enter your dates, hit Search, and
-                      within seconds you&apos;ll see a ranked list of available
-                      options with transparent pricing — no hidden costs.
-                    </p>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section> */}
-
-      <ParallaxSection  image={`${theme === "dark" ? "/dark_parallex2.png" : "/parallex2.png" }`}>
+      <ParallaxSection
+        image={`${theme === "dark" ? "/dark_parallex2.png" : "/parallex2.png"}`}
+      >
         <section className="relative z-10 px-4 py-14 sm:px-8 sm:py-16 lg:px-16 lg:py-20">
           <div
             className={`max-w-5xl mx-auto px-6 py-8 sm:px-10 sm:py-10 lg:px-12 ${parallaxPanelClass}`}
@@ -1041,11 +1070,11 @@ export default function CompareHeathrowParking() {
                     variants={item}
                     whileHover={{ y: -3 }}
                     className={`
-                  rounded-2xl border transition-all duration-300
+                  rounded-2xl border transition-all duration-300 bg-white
                   ${
                     isOpen
-                      ? "border-primaryblue bg-white shadow-md"
-                      : "border-gray-200/80 bg-white/80 hover:bg-white"
+                      ? "border-primaryblue  shadow-md"
+                      : "border-gray-200/80  hover:bg-white"
                   }
                 `}
                   >
@@ -1099,11 +1128,11 @@ export default function CompareHeathrowParking() {
             </motion.div>
           </div>
         </section>
-        <section className="relative z-10 px-4 py-6 sm:px-8 sm:py-8 lg:px-16">
+        <section className="relative z-10 px-4 py-6 sm:px-8 sm:py-8 lg:px-2">
           <div
-            className={`max-w-6xl mx-auto px-6 py-8 sm:px-10 sm:py-10 lg:px-12 ${parallaxPanelClass}`}
+            className={`max-w-7xl mx-auto px-6 py-8 sm:px-10 sm:py-10 lg:px-10 ${parallaxPanelClass}`}
           >
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2  gap-10 items-center">
               {/* LEFT SIDE */}
               <div>
                 <h2 className="text-4xl sm:text-6xl font-extrabold text-primaryblue font-zuume mb-4 dark:text-white">
@@ -1116,18 +1145,6 @@ export default function CompareHeathrowParking() {
                   experience.
                 </p>
 
-                {/* CTA Card */}
-                {/* <div className="relative rounded-2xl overflow-hidden">
-              <img src="/reviews.svg" className="w-full h-48 object-cover" />
-              <div className="absolute inset-0 bg-black/60 flex flex-col justify-center items-center text-center px-6">
-                <p className="text-white font-semibold text-lg mb-4">
-                  Ready to park without the hassle?
-                </p>
-                <button className="bg-white text-primary px-6 py-2 rounded-full font-semibold">
-                  Book Now
-                </button>
-              </div>
-            </div> */}
                 <div className="relative rounded-3xl overflow-hidden">
                   {/* Background */}
                   <img
@@ -1137,7 +1154,6 @@ export default function CompareHeathrowParking() {
                   />
 
                   {/* Dark overlay */}
-                  {/* <div className="absolute inset-0 bg-black/65 backdrop-blur-[2px]" /> */}
 
                   {/* Inner border (this is key 🔥) */}
                   <div className="absolute inset-3 rounded-2xl border border-white/30 pointer-events-none" />
@@ -1158,8 +1174,195 @@ export default function CompareHeathrowParking() {
                   </div>
                 </div>
               </div>
+              <div className="w-full flex justify-center items-center py-20">
+                <div className="relative h-[420px] sm:h-[460px] w-[250px] sm:w-[420px] perspective-[3000px] sm:perspective-[2500px]">
+                      {/* <div className="absolute inset-0 overflow-hidden px-[40px]"> */}
+                  {reviews.map((review, i) => {
+                    const offset =
+                      (i - index + reviews.length) % reviews.length;
 
-              <div className="relative h-[420px] sm:h-[460px] perspective">
+                    const pos =
+                      offset > reviews.length / 2
+                        ? offset - reviews.length
+                        : offset;
+
+                    if (Math.abs(pos) > 2) return null;
+
+                    return (
+                      <motion.div
+                        key={i}
+                        custom={pos}
+                        variants={variants}
+                        animate="position"
+                        initial={false}
+                        className={cn(
+                          "absolute w-full h-full rounded-3xl bg-[#f9fbfb] p-8 flex flex-col justify-between",
+                          pos === 0
+                            ? "shadow-[0_25px_80px_rgba(0,0,0,0.2)]"
+                            : "shadow-[0_10px_30px_rgba(0,0,0,0.08)]",
+                        )}
+                        style={{
+                          transformStyle: "preserve-3d",
+                        }}
+                      >
+                        {/* Big Quote */}
+                        <div className="absolute top-10 right-10 text-[120px] text-gray-200 font-serif leading-none pointer-events-none">
+                          ”
+                        </div>
+
+                        {/* Counter */}
+                        <div className="bg-primary/90 text-white text-xs px-5 py-2 rounded-full w-fit">
+                          {i + 1} of {reviews.length}
+                        </div>
+
+                        {/* Text */}
+                        <p className="text-gray-700 text-[15px] leading-relaxed mt-6 max-w-[90%] line-clamp-6">
+                          {review.text}
+                        </p>
+
+                        {/* Stars + Nav */}
+                        <div className="flex items-center justify-between mt-2">
+                          <div className="flex gap-1">
+                            {Array.from({ length: 5 }).map((_, j) => (
+                              <Star
+                                key={j}
+                                className="w-5 h-5 text-yellow-500 fill-yellow-500"
+                              />
+                            ))}
+                          </div>
+
+                          <div className="flex items-center gap-3">
+                            <button
+                              onClick={prev}
+                              className="p-2 rounded-full hover:bg-gray-200 transition"
+                            >
+                              <ChevronLeft className="w-5 h-5 dark:text-primary" />
+                            </button>
+                            <button
+                              onClick={next}
+                              className="p-2 rounded-full hover:bg-gray-200 transition"
+                            >
+                              <ChevronRight className="w-5 h-5 dark:text-primary" />
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Divider */}
+                        <div className="border-t border-gray-200 mt-4" />
+
+                        {/* User */}
+                        <div className="flex items-center gap-3 mt-4">
+                          <img
+                            src={`https://i.pravatar.cc/100?img=${i + 10}`}
+                            className="w-10 h-10 rounded-full"
+                          />
+                          <div>
+                            <p className="font-semibold text-sm text-gray-800">
+                              {review.name}
+                            </p>
+                            <p className="text-xs text-gray-500">
+                              {review.location}
+                            </p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div></div>
+              {/* </div> */}
+              {/* <div className="relative h-[420px] sm:h-[460px] perspective">
+                {reviews.map((review, i) => {
+                  const position = getPosition(i);
+
+                  return (
+                    // <motion.div
+                    //   key={i}
+                    //   variants={variants}
+                    //   animate={position}
+                    //   transition={{ duration: 0.6, ease: "easeInOut" }}
+                    //   className="absolute w-full h-full bg-[#f9fbfb] dark:bg-white-800 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.15)] p-8 flex flex-col justify-between"
+                    //   style={{ transformStyle: "preserve-3d" }}
+                    // >
+                    <motion.div
+                      key={i}
+                      custom={direction}
+                      variants={variants}
+                      animate={position}
+                      initial="hidden"
+                      // className="absolute w-full h-full rounded-3xl bg-[#f9fbfb] shadow-[0_20px_60px_rgba(0,0,0,0.15)] p-8 flex flex-col justify-between"
+                      className={cn(
+                        "absolute w-full h-full rounded-3xl transition-shadow bg-[#f9fbfb]",
+                        position === "active"
+                          ? "shadow-[0_25px_80px_rgba(0,0,0,0.2)]"
+                          : "shadow-[0_10px_30px_rgba(0,0,0,0.08)]",
+                      )}
+                      style={{
+                        transformStyle: "preserve-3d",
+                        transformOrigin:
+                          direction > 0 ? "right center" : "left center",
+                        filter: position !== "active" ? "blur(0.5px)" : "none",
+                      }}
+                    >
+
+                      <div className="absolute top-10 right-10 text-[120px] text-gray-200 dark:text-primary/10 font-serif leading-none pointer-events-none">
+                        ”
+                      </div>
+
+                      <div className="bg-primary/90 text-white text-xs px-5 py-2 rounded-full w-fit">
+                        {i + 1} of {reviews.length}
+                      </div>
+
+                      <p className="text-gray-700 dark:text-black text-[15px] leading-relaxed mt-6 max-w-[90%] line-clamp-9">
+                        {review.text}
+                      </p>
+
+                      <div className="flex items-center justify-between mt-2">
+                        <div className="flex gap-1">
+                          {Array.from({ length: 5 }).map((_, j) => (
+                            <Star
+                              key={j}
+                              className="w-5 h-5 text-yellow-500 fill-yellow-500"
+                            />
+                          ))}
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                          <button
+                            onClick={prev}
+                            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-slate-600 transition"
+                          >
+                            <ChevronLeft className="w-5 h-5" />
+                          </button>
+                          <button
+                            onClick={next}
+                            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-slate-600 transition"
+                          >
+                            <ChevronRight className="w-5 h-5" />
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="border-t border-gray-200 dark:border-slate-600 mt-4" />
+
+                      <div className="flex items-center gap-3 mt-4">
+                        <img
+                          src={`https://i.pravatar.cc/100?img=${i + 10}`}
+                          className="w-10 h-10 rounded-full"
+                        />
+                        <div>
+                          <p className="font-semibold text-sm text-gray-800">
+                            {review.name}
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            {review.location}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div> */}
+              {/* <div className="relative h-[420px] sm:h-[460px] perspective">
                 <AnimatePresence mode="wait" custom={direction}>
                   <motion.div
                     key={index}
@@ -1170,24 +1373,24 @@ export default function CompareHeathrowParking() {
                     className="absolute w-full h-full bg-[#f9fbfb] dark:bg-white-800 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.15)] p-8 flex flex-col justify-between"
                     style={{ transformStyle: "preserve-3d" }}
                   >
-                    {/* Quote Icon (background) */}
+                    Quote Icon (background)
                     <div className="absolute top-10 right-10 text-[120px] text-gray-200 dark:text-primary/10 font-serif leading-none pointer-events-none">
                       ”
                     </div>
 
-                    {/* Badge */}
+                    Badge
                     <div className="bg-primary/90 text-white text-xs px-5 py-2 rounded-full w-fit">
                       {index + 1} of {reviews.length}
                     </div>
 
-                    {/* Text */}
+                    Text
                     <p className="text-gray-700 dark:text-black text-[15px] leading-relaxed mt-6 max-w-[90%] line-clamp-9">
                       {review.text}
                     </p>
 
-                    {/* Stars + arrows row */}
+                    Stars + arrows row
                     <div className="flex items-center justify-between mt-2">
-                      {/* Stars */}
+                       Stars 
                       <div className="flex gap-1">
                         {Array.from({ length: 5 }).map((_, i) => (
                           <Star
@@ -1197,7 +1400,7 @@ export default function CompareHeathrowParking() {
                         ))}
                       </div>
 
-                      {/* Controls */}
+                      Controls
                       <div className="flex items-center gap-3">
                         <button
                           onClick={prev}
@@ -1214,10 +1417,10 @@ export default function CompareHeathrowParking() {
                       </div>
                     </div>
 
-                    {/* Divider */}
+                    Divider
                     <div className="border-t border-gray-200 dark:border-slate-600 mt-4" />
 
-                    {/* Footer */}
+                    Footer
                     <div className="flex items-center gap-3 mt-4">
                       <img
                         src={`https://i.pravatar.cc/100?img=${index + 10}`}
@@ -1236,20 +1439,20 @@ export default function CompareHeathrowParking() {
                   </motion.div>
                 </AnimatePresence>
 
-                {/* BACKGROUND STACKED CARDS */}
-                {/* Card 2 */}
+                BACKGROUND STACKED CARDS
+                Card 2
                 <div className="absolute inset-0 -z-10 transform translate-x-6 translate-y-4 rotate-[3deg] scale-[0.98] rounded-3xl bg-gray-100 dark:bg-white-700 shadow-[0_15px_40px_rgba(0,0,0,0.08)] opacity-80" />
 
-                {/* Card 3 */}
+                Card 3
                 <div className="absolute inset-0 -z-20 transform translate-x-10 translate-y-8 rotate-[6deg] scale-[0.96] rounded-3xl bg-gray-200 dark:bg-white-600 shadow-[0_10px_30px_rgba(0,0,0,0.06)] opacity-60" />
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
 
         {/* ── CTA BANNER ─────────────────────────────────────────────────────── */}
-        <section className="relative z-10 py-10 px-4 sm:px-8 sm:py-14 lg:px-16">
-          <div className="max-w-6xl mx-auto relative rounded-[2rem] overflow-hidden">
+        <section className="relative z-10 py-10 px-4 sm:px-8 sm:py-14 lg:px-10">
+          <div className="max-w-7xl mx-auto relative rounded-[2rem] overflow-hidden">
             {/* Background Image */}
             <Image
               src="/cta.svg" // replace with your image

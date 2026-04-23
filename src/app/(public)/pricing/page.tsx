@@ -163,14 +163,10 @@ function PricingContent() {
                 <button
                   type="button"
                   onClick={handleSeePrices}
-                  className="relative mt-5 inline-flex items-center gap-2 rounded-full text-sm font-semibold px-6 py-2.5 text-white overflow-hidden"
-                  style={{
-                    background: `radial-gradient(ellipse 80% 120% at 50% -10%, #AA10EC 2%, var(--color-primary) 100%)`,
-                  }}
+                  className="relative mt-5 inline-flex items-center gap-2 rounded-full text-sm font-semibold px-6 py-2.5 text-white overflow-hidden bg-primary hover:bg-white border border-primary hover:text-primary"
+                  
                 >
-                  <div className="absolute inset-0 z-0 pointer-events-none">
-                    <NoiseTexture frequency={1} octaves={10} slope={0.6} noiseOpacity={1} />
-                  </div>
+                  
                   <span className="relative z-10 flex items-center gap-2">
                     See Prices <ArrowRight className="h-4 w-4" />
                   </span>
@@ -279,27 +275,12 @@ function PricingContent() {
                           onClick={() => handleBookTier(tier._id)}
                           className={`relative w-full inline-flex items-center justify-center gap-2 rounded-xl text-sm font-semibold px-5 py-3 transition-opacity overflow-hidden ${
                             hasDates
-                              ? "text-white hover:opacity-90 cursor-pointer"
+                              ? "hover:opacity-90 cursor-pointer bg-primary text-white border border-primary hover:text-primary hover:bg-white"
                               : "bg-muted text-muted-foreground cursor-not-allowed"
                           }`}
-                          style={
-                            hasDates
-                              ? {
-                                  background: `radial-gradient(ellipse 80% 120% at 50% -10%, #AA10EC 2%, var(--color-primary) 100%)`,
-                                }
-                              : undefined
-                          }
+                          
                         >
-                          {hasDates && (
-                            <div className="absolute inset-0 z-0 pointer-events-none">
-                              <NoiseTexture
-                                frequency={1}
-                                octaves={10}
-                                slope={0.6}
-                                noiseOpacity={1}
-                              />
-                            </div>
-                          )}
+                          
                           <span className="relative z-10 flex items-center gap-2">
                             {hasDates
                               ? `Book ${tier.name}`

@@ -42,42 +42,32 @@ export default function FAQsPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--background)" }}>
+    <div className="min-h-screen bg-background">
       <PageHero
         title="Frequently Asked Questions"
         subtitle="Find answers to common questions"
       />
       <section className="py-16 max-w-3xl mx-auto px-4">
-        <div className="space-y-3">
+        <div className="space-y-2">
           {faqs.map((faq, i) => (
             <div
               key={i}
-              className="rounded-xl border overflow-hidden"
-              style={{
-                background: "var(--card)",
-                borderColor: "var(--border)",
-              }}
+              className="rounded-xl overflow-hidden transition-colors border bg-card border-primary ring-0 dark:bg-white/20 shadow-lg"
             >
               <button
+                type="button"
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full text-left px-6 py-4 flex justify-between items-center font-medium"
-                style={{ color: "var(--foreground)" }}
+                className="w-full text-left px-6 py-4 flex justify-between items-center font-medium text-foreground  hover:bg-primary/5 transition-colors"
               >
-                {faq.q}
+                <span>{faq.q}</span>
                 <span
-                  className="text-xl transition-transform"
-                  style={{
-                    transform: openIndex === i ? "rotate(45deg)" : "rotate(0)",
-                  }}
+                  className={`text-xl text-primary dark:text-primaryblue shrink-0 ml-4 transition-transform duration-200 ${openIndex === i ? "rotate-45" : "rotate-0"}`}
                 >
                   +
                 </span>
               </button>
               {openIndex === i && (
-                <div
-                  className="px-6 pb-4 text-sm leading-relaxed animate-fade-in"
-                  style={{ color: "var(--muted-foreground)" }}
-                >
+                <div className="px-6 pb-5 pt-1 text-sm leading-relaxed text-muted-foreground border-t border-border animate-fade-in">
                   {faq.a}
                 </div>
               )}

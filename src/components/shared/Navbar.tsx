@@ -25,15 +25,15 @@ export default function Navbar() {
 
   return (
     // <nav className="fixed top-5 left-1/2 -translate-x-1/2 z-50 shadow-inner rounded-full overflow-hidden bg-white/40 bg-backdrop-lg w-6xl shadow-lg border border-white/20">
-    <nav className="fixed top-5 left-1/2 -translate-x-1/2 z-50 max-w-6xl w-[95%] shadow-inner rounded-full bg-white/40 backdrop-blur-md  shadow-lg border border-white/20">
+    <nav className="fixed top-5 left-1/2 -translate-x-1/2 z-50 max-w-7xl w-[95%] shadow-inner rounded-full dark:bg-white/40 bg-white/50 dark:backdrop-blur-md backdrop-blur-lg dark:shadow-lg border dark:border-white/20 border-primary/50">
       {/* <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 h-20 flex items-center justify-between"> */}
       <div className="relative flex items-center justify-between h-16 px-4 sm:px-6">
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
+          className="text-white p-2 rounded-lg dark:hover:bg-white/10 transition-colors hover:bg-primary/10"
         >
-          <span className="flex gap-2 font-normal">
+          <span className="flex gap-2 font-normal dark:text-white text-primary">
             <span className="hidden lg:block">Menu</span>
             {isOpen ? (
               <X className="w-6 h-6" strokeWidth={3} />
@@ -57,7 +57,7 @@ export default function Navbar() {
           <button>
             <Link
               href="/pricing"
-              className="hidden lg:block bg-white text-primary text-sm font-bold px-6 py-2 rounded-full  hover:bg-primary/90 hover:text-white transition-colors"
+              className="hidden lg:block bg-white text-primary text-sm font-bold px-6 py-2 rounded-full  hover:bg-primary/90 hover:text-white transition-colors border border-primary dark:border-0"
             >
               Book Now
             </Link>

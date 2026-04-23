@@ -8,13 +8,13 @@ import { Phone, Mail, MapPin } from "lucide-react";
 export default function Footer() {
     const { theme } = useTheme();
   return (
-    <footer className="relative  text-gray-700 overflow-hidden">
+    <footer className="relative text-gray-700 overflow-hidden">
       {/* Top Section */}
-      <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div className="max-w-7xl mx-auto px-6 py-16 lg:px-10 grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* Brand */}
         <div>
           <h2 className="font-bold text-lg mb-2">
-            <Image src={`${theme === "dark" ? "/dark_logo.svg" : "/logo.svg"}`} alt="ParkEase" width={100} height={100} />
+            <Image src={`${theme === "dark" ? "/dark_logo.svg" : "/logo.svg"}`} alt="ParkEase" width={200} height={100} />
           </h2>
           <p className="text-sm mb-4 dark:text-white dark:opacity-70">
             The smartest way to find, reserve, and manage parking.
@@ -30,7 +30,6 @@ export default function Footer() {
               { href: "/", label: "Home" },
               { href: "/book", label: "Book Parking" },
               { href: "/track", label: "Track Booking" },
-              { href: "/about", label: "About Us" },
             ].map(({ href, label }) => (
               <li key={href}>
                 <Link
@@ -51,7 +50,8 @@ export default function Footer() {
             {[
               { href: "/faqs", label: "FAQs" },
               { href: "/contact", label: "Contact Us" },
-              { href: "/support", label: "Support" },
+              { href: "/pricing", label: "Pricing" },
+              { href: "/about", label: "About Us" },
             ].map(({ href, label }) => (
               <li key={href}>
                 <Link
@@ -70,8 +70,8 @@ export default function Footer() {
           <h4 className="font-bold text-foreground text-base mb-4">
             Contact Us
           </h4>
-          <div className="space-y-3 text-sm">
-            <div className="flex items-start gap-3 opacity-70 hover:opacity-100 transition">
+           <div className="space-y-3 text-sm">
+           {/* <div className="flex items-start gap-3 opacity-70 hover:opacity-100 transition">
               <a
                 href="https://maps.app.goo.gl/5Kpmej29MWZ5qRbD7"
                 target="_blank"
@@ -79,13 +79,13 @@ export default function Footer() {
               >
                 103 Pennine Way <br /> UB3 5LJ
               </a>
-            </div>
+            </div> */}
             <div className="flex items-center gap-3 opacity-70 hover:opacity-100 transition">
               <a href="tel:07508624155" className="dark:text-white">07508624155</a>
             </div>
             <div className="flex items-center gap-3 opacity-70 hover:opacity-100 transition">
-              <a href="mailto:info@compareheathrowparking.uk" className="dark:text-white">
-                info@compareheathrowparking.uk
+              <a href="mailto:parkeaseparking@gmail.com" className="dark:text-white">
+                parkeaseparking@gmail.com
               </a>
             </div>
           </div>
@@ -93,8 +93,8 @@ export default function Footer() {
       </div>
 
       {/* Copyright — pb-0 so no gap before VideoMaskText */}
-      <div className="border-t dark:border-0 pt-6 px-6 flex flex-col md:flex-row justify-between items-center text-sm pb-0 dark:text-white">
-        <p>© 2026 PARKEASE. BY The SOCIAL NEXUS.</p>
+      <div className="border-t dark:border-0 pt-6 px-6 lg:px-10 flex flex-col md:flex-row justify-between items-center text-sm pb-0 dark:text-white">
+        <p>© 2026 PARKEASE. BY <a href="https://thesocialnexus.co.uk" className="underline hover:opacity-100 transition">The SOCIAL NEXUS</a>.</p>
       </div>
 
       {/* Video Mask — flush to bottom, no wrapper tricks needed */}
@@ -153,7 +153,7 @@ function VideoMaskText() {
         <rect
           width="100%"
           height="100%"
-          fill={`${theme === "dark" ? "#010e1a" : "#f5f7f9"}`}
+          fill={`${theme === "dark" ? "#010e1a" : "#ffffff"}`}
           mask="url(#text-mask)"
         />
       </svg>

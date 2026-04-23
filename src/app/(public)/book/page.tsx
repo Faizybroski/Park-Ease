@@ -10,6 +10,7 @@ import { z } from "zod";
 import { api } from "@/lib/api";
 import { formatDayCount, formatPrice } from "@/lib/utils";
 import { DateTimePicker } from "@/components/ui/DatePicker";
+import { TerminalSelect } from "@/components/ui/TerminalPicker";
 import PageHero from "@/components/shared/PageHero";
 import {
   Form,
@@ -280,7 +281,7 @@ function BookingFormContent() {
   // booking disabled guard
   if (bookingEnabled === false) {
     return (
-      <div className="min-h-screen py-20 bg-muted/40 flex items-center justify-center">
+      <div className="min-h-screen py-20 bg-background flex items-center justify-center">
         <div className="max-w-md mx-auto px-4 text-center">
           <div className="w-16 h-16 rounded-2xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center mx-auto mb-5">
             <Ban className="w-8 h-8 text-red-500 dark:text-red-400" />
@@ -333,7 +334,7 @@ function BookingFormContent() {
         title="Book Your Parking"
         subtitle="Fill in your details and reserve your spot in seconds"
       />
-      <div className="min-h-screen py-10 bg-muted/40">
+      <div className="min-h-screen py-10 bg-background">
         <div className="max-w-3xl mx-auto px-4">
           <Form {...form}>
             <form
@@ -402,7 +403,9 @@ function BookingFormContent() {
                       <FormItem>
                         <FormLabel>
                           Drop-off Date &amp; Time
-                          <span className="text-red-500 dark:text-red-400">*</span>
+                          <span className="text-red-500 dark:text-red-400">
+                            *
+                          </span>
                         </FormLabel>
                         <FormControl>
                           <DateTimePicker
@@ -423,7 +426,9 @@ function BookingFormContent() {
                       <FormItem>
                         <FormLabel>
                           Pick-up Date &amp; Time
-                          <span className="text-red-500 dark:text-red-400">*</span>
+                          <span className="text-red-500 dark:text-red-400">
+                            *
+                          </span>
                         </FormLabel>
                         <FormControl>
                           <DateTimePicker
@@ -570,14 +575,17 @@ function BookingFormContent() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>
-                          Full Name<span className="text-red-500 dark:text-red-400">*</span>
+                          Full Name
+                          <span className="text-red-500 dark:text-red-400">
+                            *
+                          </span>
                         </FormLabel>
                         <FormControl>
                           <div className="relative">
                             <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary dark:text-primaryblue" />
                             <Input
                               placeholder="John Smith"
-                              className="pl-9"
+                              className="pl-9 "
                               {...field}
                             />
                           </div>
@@ -593,7 +601,10 @@ function BookingFormContent() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>
-                          Email Address<span className="text-red-500 dark:text-red-400">*</span>
+                          Email Address
+                          <span className="text-red-500 dark:text-red-400">
+                            *
+                          </span>
                         </FormLabel>
                         <FormControl>
                           <div className="relative">
@@ -617,7 +628,10 @@ function BookingFormContent() {
                     render={({ field }) => (
                       <FormItem className="sm:col-span-2">
                         <FormLabel>
-                          Phone Number<span className="text-red-500 dark:text-red-400">*</span>
+                          Phone Number
+                          <span className="text-red-500 dark:text-red-400">
+                            *
+                          </span>
                         </FormLabel>
                         <FormControl>
                           <div className="relative">
@@ -654,7 +668,10 @@ function BookingFormContent() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>
-                          Car Make<span className="text-red-500 dark:text-red-400">*</span>
+                          Car Make
+                          <span className="text-red-500 dark:text-red-400">
+                            *
+                          </span>
                         </FormLabel>
                         <FormControl>
                           <div className="relative">
@@ -677,7 +694,10 @@ function BookingFormContent() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>
-                          Car Model<span className="text-red-500 dark:text-red-400">*</span>
+                          Car Model
+                          <span className="text-red-500 dark:text-red-400">
+                            *
+                          </span>
                         </FormLabel>
                         <FormControl>
                           <div className="relative">
@@ -701,7 +721,9 @@ function BookingFormContent() {
                       <FormItem>
                         <FormLabel>
                           Registration Number
-                          <span className="text-red-500 dark:text-red-400">*</span>
+                          <span className="text-red-500 dark:text-red-400">
+                            *
+                          </span>
                         </FormLabel>
                         <FormControl>
                           <div className="relative">
@@ -724,7 +746,10 @@ function BookingFormContent() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>
-                          Car Color<span className="text-red-500 dark:text-red-400">*</span>
+                          Car Color
+                          <span className="text-red-500 dark:text-red-400">
+                            *
+                          </span>
                         </FormLabel>
                         <FormControl>
                           <div className="relative">
@@ -764,20 +789,10 @@ function BookingFormContent() {
                       <FormItem className="col-span-2">
                         <FormLabel>Departure Terminal</FormLabel>
                         <FormControl>
-                          <div className="relative">
-                            <PlaneTakeoff className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary dark:text-primaryblue pointer-events-none z-10" />
-                            <select
-                              className="w-full h-10 pl-9 pr-4 rounded-md border border-input bg-background text-sm appearance-none"
-                              {...field}
-                            >
-                              <option value="">— Not selected —</option>
-                              <option value="T1">T1</option>
-                              <option value="T2">T2</option>
-                              <option value="T3">T3</option>
-                              <option value="T4">T4</option>
-                              <option value="T5">T5</option>
-                            </select>
-                          </div>
+                          <TerminalSelect
+                            value={field.value}
+                            onChange={field.onChange}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -791,20 +806,10 @@ function BookingFormContent() {
                       <FormItem>
                         <FormLabel>Arrival Terminal</FormLabel>
                         <FormControl>
-                          <div className="relative">
-                            <PlaneLanding className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary dark:text-primaryblue pointer-events-none z-10" />
-                            <select
-                              className="w-full h-10 pl-9 pr-4 rounded-md border border-input bg-background text-sm appearance-none"
-                              {...field}
-                            >
-                              <option value="">— Not selected —</option>
-                              <option value="T1">T1</option>
-                              <option value="T2">T2</option>
-                              <option value="T3">T3</option>
-                              <option value="T4">T4</option>
-                              <option value="T5">T5</option>
-                            </select>
-                          </div>
+                          <TerminalSelect
+                            value={field.value}
+                            onChange={field.onChange}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

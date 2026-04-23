@@ -196,6 +196,7 @@ const generateTimeSlots = () => {
 };
 
 export function DateTimePicker({ value, onChange, homepage = false }: Props) {
+  const [open, setOpen] = useState(false);
   const parsed = value ? new Date(value) : undefined;
 
   const [date, setDate] = useState<Date | undefined>(parsed);
@@ -232,14 +233,14 @@ export function DateTimePicker({ value, onChange, homepage = false }: Props) {
   const timeSlots = generateTimeSlots();
 
   return (
-    <Popover>
+    <Popover open={open} onOpenChange={setOpen}>
       {/* SINGLE TRIGGER */}
       <PopoverTrigger asChild className={` ${homepage ? " active:bg-white" : "active:bg-white/20"}`}>
         <Button
           variant="outline"
-          className={`w-full h-11 rounded-md justify-start text-left font-normal border border-ring bg-transparent backdrop-blur-md  ${homepage ? "bg-white rounded-full border-0" : "hover:bg-white/20 active:bg-white/20 data-[state=open]:bg-white/20" }`}
+          className={`w-full h-11 rounded-md justify-start text-left font-normal border border-ring bg-transparent backdrop-blur-md  ${homepage ? "bg-white rounded-full border-0 h-14" : "hover:bg-white/20 active:bg-white/20 data-[state=open]:bg-white/2" }`}
         >
-          <CalendarIcon className={`mr-2 h-4 w-4  ${homepage ? "text-muted-foreground" : "text-primary"}`} />
+          <CalendarIcon className={`mr-2 h-4 w-4  ${homepage ? "text-muted-foreground dark:text-primary" : "text-primary"}`} />
 
           {date ? (
             <>
@@ -249,7 +250,7 @@ export function DateTimePicker({ value, onChange, homepage = false }: Props) {
               <span className={` ${homepage ? "text-primary" : "text-primary"}`}>{time || "00:00"}</span>
             </>
           ) : (
-            <span className={`${homepage ? "text-muted-foreground" : "text-ring"}`}>Pick date & time</span>
+            <span className={`${homepage ? "text-muted-foreground dark:text-primary/50" : "text-ring dark:text-muted-foreground"}`}>Pick date & time</span>
           )}
         </Button>
       </PopoverTrigger>
@@ -284,11 +285,12 @@ export function DateTimePicker({ value, onChange, homepage = false }: Props) {
                   onClick={() => {
                     setTime(slot);
                     update(undefined, slot);
+                    setOpen(false);
                   }}
                   className={`text-sm px-3 py-2 rounded-md text-left hover:bg-muted dark:text-primary dark:hover:bg-background ${
                     time === slot
-                      ? "bg-primary text-white hover:bg-primary font-medium dark:text-white"
-                      : ""
+                      ? "bg-primary text-white hover:bg-primary font-medium dark:text-white "
+                      : "dark:hover:bg-primary/20"
                   }`}
                 >
                   {slot}
