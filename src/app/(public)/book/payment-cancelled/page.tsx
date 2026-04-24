@@ -47,7 +47,7 @@ function PaymentCancelledContent() {
               <p className="text-sm font-semibold text-purple-900">
                 Service provided by {brand.name}
               </p>
-              <p className="text-xs text-purple-600">Booked via Heathrow Compare Parking</p>
+              <p className="text-xs text-purple-600">Booked via Compare Heathrow  Parking</p>
             </div>
           </div>
         )} */}
