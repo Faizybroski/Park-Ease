@@ -252,6 +252,27 @@ function BookingFormContent() {
     // );
   }, [startTime, endTime]);
 
+  useEffect(() => {
+  const errors = form.formState.errors;
+
+  if (Object.keys(errors).length > 0) {
+    const firstErrorField = Object.keys(errors)[0];
+
+    const el = document.querySelector(
+      `[name="${firstErrorField}"]`
+    ) as HTMLElement | null;
+
+    if (el) {
+      el.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+
+      el.focus({ preventScroll: true });
+    }
+  }
+}, [form.formState.errors]);
+
   // checkout handler
   const handleBook = async () => {
     setCheckoutError(null);

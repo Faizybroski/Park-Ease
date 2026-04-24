@@ -187,16 +187,8 @@ function PaymentSuccessContent() {
 
         {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-2">
-          <Button asChild className="flex-1 relative overflow-hidden">
-            <Link href={`/track?number=${booking.trackingNumber}`}>
-            <div className="absolute inset-0 z-0 pointer-events-none">
-              <NoiseTexture
-                frequency={1}
-                octaves={10}
-                slope={0.6}
-                noiseOpacity={1}
-              />
-            </div>
+          <Button asChild className="flex-1 relative overflow-hidden ">
+            <Link href={`/track?number=${booking.trackingNumber}`} className="">
               Track Booking
             </Link>
           </Button>
