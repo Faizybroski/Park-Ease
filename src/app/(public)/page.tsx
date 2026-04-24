@@ -316,7 +316,7 @@ const variants = {
       zIndex: 30 - abs,
       filter: abs === 0 ? "none" : "blur(1px)",
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 120,
         damping: 18,
       },
