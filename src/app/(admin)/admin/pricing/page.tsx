@@ -993,7 +993,7 @@ export default function PricingPage() {
           [
             { id: "tiers", icon: <Tag className="h-4 w-4" />, label: "Service Tiers" },
             { id: "compare", icon: <Layers className="h-4 w-4" />, label: "Compare Tiers" },
-            { id: "default", icon: <BadgeDollarSign className="h-4 w-4" />, label: "Business Pricing" },
+            { id: "default", icon: <BadgeDollarSign className="h-4 w-4" />, label: "Business Pricing for Compare Heathrow Parking" },
           ] as const
         ).map(({ id, icon, label }) => (
           <button
