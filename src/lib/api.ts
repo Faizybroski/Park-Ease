@@ -124,6 +124,27 @@ class ApiClient {
     return this.request("/admin/logout", { method: "POST" });
   }
 
+  async forgotPassword(email: string): Promise<ApiResponse<{ token: string }>> {
+    return this.request("/admin/forgot-password", {
+      method: "POST",
+      body: JSON.stringify({ email }),
+    });
+  }
+
+  async resetPassword(token: string, password: string): Promise<ApiResponse<{ message: string }>> {
+    return this.request("/admin/reset-password", {
+      method: "POST",
+      body: JSON.stringify({ token, password }),
+    });
+  }
+
+  async changePassword(currentPassword: string, newPassword: string): Promise<ApiResponse<{ message: string }>> {
+    return this.request("/admin/change-password", {
+      method: "POST",
+      body: JSON.stringify({ currentPassword, newPassword }),
+    });
+  }
+
   // ── Admin endpoints ────────────────────────────────────────────────
 
   async getDashboard(): Promise<ApiResponse<DashboardStats>> {
