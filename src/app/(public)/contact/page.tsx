@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { CheckCircle2, AlertCircle, Mail, Phone, MapPin, Clock } from "lucide-react";
+import { CheckCircle2, AlertCircle, Mail, Phone, MapPin, Clock, MessageCircle } from "lucide-react";
 import { api } from "@/lib/api";
 import PageHero from "@/components/shared/PageHero";
 
@@ -37,6 +37,13 @@ const items = [
     color: "text-blue-600 dark:text-blue-400",
     bg: "bg-blue-100 dark:bg-blue-900/30",
   },
+  {
+  icon: MessageCircle,
+  title: "WhatsApp",
+  value: "+44 7508 624155",
+  color: "text-emerald-600 dark:text-emerald-400",
+  bg: "bg-emerald-100 dark:bg-emerald-900/30",
+},
   {
     icon: Phone,
     title: "Phone",
@@ -89,9 +96,9 @@ export default function ContactPage() {
       <section className="py-16 max-w-4xl mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-8">
           {/* Contact Form */}
-          <Card className="rounded-2xl border border-primary bg-card p-6 text-center text-card-foreground ring-0 lg:p-8">
+          <Card className="rounded-2xl border border-primary/50 bg-card dark:bg-white/6 p-6 text-center text-card-foreground ring-0 lg:p-8">
             <CardHeader className="p-0">
-              <CardTitle className="text-xl font-bold mb-6 text-foreground">
+              <CardTitle className="text-xl font-bold mb-6 text-primary dark:text-primaryblue">
                 Send us a message
               </CardTitle>
             </CardHeader>
@@ -141,7 +148,7 @@ export default function ContactPage() {
                       <FormItem>
                         <FormLabel>Your Message</FormLabel>
                         <FormControl>
-                          <Textarea rows={4} placeholder="Type your message..." {...field} />
+                          <Textarea rows={6} placeholder="Type your message..." {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -170,7 +177,7 @@ export default function ContactPage() {
               return (
                 <div
                   key={i}
-                  className="rounded-2xl  p-5 flex items-start gap-4 border bg-card border-primary ring-0 dark:bg-white/20 shadow-lg hover:bg-primary/5"
+                  className="rounded-2xl  p-5 flex items-start gap-4 border bg-card border-primary/50 ring-0 dark:bg-white/6 shadow-lg hover:bg-primary/5 hover:scale-105 duration-300"
                 >
                   <div className={`w-11 h-11 flex items-center justify-center rounded-xl ${item.bg} shrink-0 transition`}>
                     <Icon className={`w-5 h-5 ${item.color}`} />

@@ -488,15 +488,20 @@ export default function CompareHeathrowParking() {
     const context = canvas.getContext("2d")!;
 
     const frameCount = 107; // your total frames
+    // const frameCount = 65; // your total frames
+
 
     const currentFrame = (index: number) =>
       `/scroll-trigger-animation/ezgif-frame-${String(index).padStart(3, "0")}.jpg`;
+    // `/compressedImages/P (${index}).png`
 
     const images: HTMLImageElement[] = [];
     const imageSeq = { frame: 0 };
 
     // Preload images
     for (let i = 1; i <= frameCount; i++) {
+    // for (let i = 2; i <= frameCount; i++) {
+
       const img = new window.Image();
       img.src = currentFrame(i);
       images.push(img);
@@ -685,25 +690,39 @@ export default function CompareHeathrowParking() {
         {/* Content: title at top, search anchored to bottom */}
         <div className="relative z-10 h-full flex flex-col justify-between max-w-7xl mx-auto w-full px-4 sm:px-8 lg:px-10 pt-20 sm:pt-24 md:pt-40 pb-20 sm:pb-24 lg:pb-28">
           {/* Title block */}
-          <div className="max-w-2xl text-center sm:text-left">
+          {/* <div className="max-w-2xl text-center sm:text-left"> */}
+          <div className=" flex justify-between">
+            <div>
+              <motion.h1
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.7 }}
+                className="max-w-2xl font-bold text-6xl pt-10 sm:pt-0 sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-tight text-white mb-3 sm:mb-2 font-zuume text-center sm:text-left"
+              >
+                Parking, Made Effortless
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7, duration: 0.6 }}
+                className="text-white/90 text-sm sm:text-base md:text-lg leading-relaxed max-w-md text-center sm:text-left"
+              >
+                Find, reserve, and manage parking spaces instantly — anywhere,
+                anytime.
+              </motion.p>
+            </div>
+            {/* </div>
+          <div className="max-w-2xl text-center sm:text-right"> */}
+
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.7 }}
-              className="font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-tight text-white mb-3 sm:mb-2 font-zuume"
+              className="hidden md:block font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-tight text-white mb-3 sm:mb-2 font-zuume text-center sm:text-right"
             >
-              Parking, Made Effortless
+              At Heathrow Airport
             </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.6 }}
-              className="text-white/90 text-sm sm:text-base md:text-lg leading-relaxed max-w-md"
-            >
-              Find, reserve, and manage parking spaces instantly — anywhere,
-              anytime.
-            </motion.p>
           </div>
 
           {/* Search form — anchored to bottom of hero */}
@@ -724,7 +743,7 @@ export default function CompareHeathrowParking() {
                         <Label className="text-sm font-medium text-white mb-2 block">
                           Select Airport
                         </Label>
-                        <AirportPopover homepage/>
+                        <AirportPopover homepage />
                       </div>
                       <div>
                         <Label className="text-sm font-medium text-white mb-2 block">
@@ -770,9 +789,9 @@ export default function CompareHeathrowParking() {
       >
         <div
           ref={stickyRef}
-          className="min-h-screen md:h-screen flex items-center justify-center overflow-visible py-16 md:py-0"
+          className=" flex items-center justify-center overflow-visible py-16 md:py-0"
         >
-          <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-4 px-4 sm:px-8 lg:px-10">
+          <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-4 px-4 sm:px-8 lg:px-10 mt-30 mb-20">
             <div ref={card1Ref} className="lg:col-span-2">
               <FeatureCard feature={features[0]} />
             </div>
@@ -789,7 +808,7 @@ export default function CompareHeathrowParking() {
       <ParallaxSection
         image={`${theme === "dark" ? "/dark_parallex1.png" : "/parallex1.png"}`}
       >
-        <section className="relative z-10 px-4 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
+        <section className="relative z-10 py-14 sm:py-16 lg:py-20">
           {/* Background image (right side fade) */}
           {/* <div className="absolute inset-0">
             <img
@@ -802,7 +821,7 @@ export default function CompareHeathrowParking() {
 
           {/* Content */}
           <div
-            className={`relative z-10 max-w-7xl mx-auto px-6 py-8 sm:px-10 sm:pt-10 sm:pb-2 lg:px-1 ${parallaxPanelClass}`}
+            className="relative z-10 max-w-7xl mx-auto px-4 py-8 sm:px-8 sm:pt-10 sm:pb-2 lg:px-10"
           >
             {/* Heading */}
             <h2 className="font-bold tracking-tight mb-6">
@@ -856,9 +875,9 @@ export default function CompareHeathrowParking() {
           </div>
         </section>
 
-        <section className="relative z-10 px-4 sm:px-8 lg:px-10 ">
+        <section className="relative z-10">
           <div
-            className={`max-w-7xl mx-auto px-6 py-6 sm:px-1 sm:py-8  ${parallaxPanelClass}`}
+            className="max-w-7xl mx-auto px-4 py-6 sm:px-8 sm:py-8 lg:px-10"
           >
             <div className="flex sm:flex-row flex-col justify-between gap-10 text-center py-10 border-t">
               <div>
@@ -890,159 +909,160 @@ export default function CompareHeathrowParking() {
             </div>
           </div>
         </section>
-
-        {/* ── PARALLAX 1: About Us → Pricing ─────────────────────────────────── */}
-        {/* <ParallaxBanner src="/parallex1.png" fromColor="#ffffff" toColor="#ffffff" /> */}
-
-        <section className="relative z-10 px-4 py-6 sm:px-8 sm:py-8 lg:px-16 lg:pb-20">
-          <div
-            className={`mx-auto max-w-7xl px-6 py-10 sm:px-10 sm:py-12 lg:px-12 ${parallaxPanelClass}`}
-          >
-            <h2 className="text-4xl sm:text-7xl text-primaryblue text-center font-extrabold font-zuume dark:text-white">
-              Daily Pricing
-            </h2>
-            <p className="text-center text-primaryblue/60 mb-8 dark:text-white font-light">
-              Prices may vary based on duration and season
-            </p>
-
-            {/* Loading skeletons */}
-            {tiersLoading && (
-              <div className="mx-auto grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
-                {[0, 1, 2].map((i) => (
-                  <div
-                    key={i}
-                    className="rounded-2xl border border-border bg-white/60 backdrop-blur-xl p-6 animate-pulse"
-                  >
-                    <div className="h-5 w-2/3 bg-muted rounded mb-3" />
-                    <div className="h-3 w-full bg-muted rounded mb-1" />
-                    <div className="h-3 w-4/5 bg-muted rounded mb-6" />
-                    <div className="h-8 w-1/2 bg-muted rounded mb-6" />
-                    <div className="space-y-2">
-                      {[0, 1, 2].map((j) => (
-                        <div key={j} className="h-3 w-full bg-muted rounded" />
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* Error state */}
-            {!tiersLoading && tiersError && (
-              <p className="text-center text-muted-foreground py-10">
-                Unable to load pricing at this time. Please try again later.
-              </p>
-            )}
-
-            {/* Empty state */}
-            {!tiersLoading && !tiersError && tiers.length === 0 && (
-              <p className="text-center text-muted-foreground py-10">
-                No pricing tiers available yet.
-              </p>
-            )}
-
-            {/* Tier cards */}
-            {!tiersLoading && !tiersError && tiers.length > 0 && (
-              <motion.div
-                variants={container}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, margin: "-80px" }}
-                className={`mx-auto grid gap-6 ${
-                  tiers.length === 1
-                    ? "max-w-sm"
-                    : tiers.length === 2
-                      ? "sm:grid-cols-2 max-w-3xl"
-                      : "sm:grid-cols-2 lg:grid-cols-3 max-w-6xl"
-                }`}
-              >
-                {tiers.map((tier: BusinessTier, i: number) => (
-                  <motion.div
-                    key={tier._id}
-                    variants={getItemVariant(i)}
-                    whileHover={{ y: -8, scale: 1.02 }}
-                    className="h-full"
-                  >
-                    <Card className="h-full flex flex-col rounded-2xl border border-white/40 dark:border-white/10 bg-white/80 dark:bg-white/6 backdrop-blur-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:border-primary/40 overflow-hidden">
-                      {/* Coloured top bar */}
-                      <div className="h-1.5 w-full bg-gradient-to-r from-primary to-primaryblue" />
-
-                      <CardHeader className="p-6 pb-3">
-                        <div className="flex items-start justify-between gap-2">
-                          <CardTitle className="text-xl font-bold text-primaryblue  dark:text-white">
-                            {tier.name}
-                          </CardTitle>
-                          {i === 1 && tiers.length >= 3 && (
-                            <span className="shrink-0 text-[10px] font-semibold uppercase tracking-wider bg-primary text-white px-2 py-0.5 rounded-full">
-                              Popular
-                            </span>
-                          )}
-                        </div>
-
-                        {tier.description && (
-                          <CardDescription className="text-sm mt-1 leading-relaxed">
-                            {tier.description}
-                          </CardDescription>
-                        )}
-
-                        {/* Price badge */}
-                        <div className="mt-5 flex items-end gap-1">
-                          <span className="text-3xl font-extrabold text-primaryblue leading-none dark:text-white">
-                            {formatPrice(tier.firstTenDayPrices[0] ?? 0)}
-                          </span>
-                          <span className="text-sm text-muted-foreground mb-0.5 ">
-                            /day
-                          </span>
-                        </div>
-                        <p className="text-xs text-muted-foreground mt-1">
-                          Starting price
-                        </p>
-                      </CardHeader>
-
-                      <div className="mx-6 border-t border-border/60" />
-
-                      <CardContent className="px-6 py-5 flex flex-col flex-1">
-                        {tier.features.length > 0 && (
-                          <ul className="space-y-2.5 flex-1">
-                            {tier.features.map((f: string, idx: number) => (
-                              <li
-                                key={idx}
-                                className="flex items-start gap-2.5 text-sm"
-                              >
-                                <CheckCircle2 className="h-4 w-4 mt-0.5 shrink-0 text-emerald-500 dark:text-primaryblue" />
-                                <span className="text-foreground leading-snug">
-                                  {f}
-                                </span>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-
-                        <Button
-                          onClick={handleQuickBook}
-                          className="mt-6 w-full rounded-xl hover:bg-primaryblue hover:text-white"
-                          variant={
-                            i === 1 && tiers.length >= 3 ? "default" : "outline"
-                          }
-                        >
-                          Book Now
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
-              </motion.div>
-            )}
-          </div>
-        </section>
       </ParallaxSection>
+
+      {/* ── PARALLAX 1: About Us → Pricing ─────────────────────────────────── */}
+      {/* <ParallaxBanner src="/parallex1.png" fromColor="#ffffff" toColor="#ffffff" /> */}
+
+      <section className="relative z-10 py-6 sm:py-8 lg:pb-20">
+        <div
+          className="mx-auto max-w-7xl px-4 py-10 sm:px-8 sm:py-12 lg:px-10 bg-[url('/greenradial.png')]"
+        >
+          <h2 className="text-4xl sm:text-7xl text-primaryblue text-center font-extrabold font-zuume dark:text-white">
+            Daily Pricing
+          </h2>
+          <p className="text-center text-primaryblue/60 mb-8 dark:text-white font-light">
+            Prices may vary based on duration and season
+          </p>
+
+          {/* Loading skeletons */}
+          {tiersLoading && (
+            <div className="mx-auto grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl">
+              {[0, 1, 2].map((i) => (
+                <div
+                  key={i}
+                  className="rounded-2xl border border-border bg-white/60 backdrop-blur-xl p-6 animate-pulse"
+                >
+                  <div className="h-5 w-2/3 bg-muted rounded mb-3" />
+                  <div className="h-3 w-full bg-muted rounded mb-1" />
+                  <div className="h-3 w-4/5 bg-muted rounded mb-6" />
+                  <div className="h-8 w-1/2 bg-muted rounded mb-6" />
+                  <div className="space-y-2">
+                    {[0, 1, 2].map((j) => (
+                      <div key={j} className="h-3 w-full bg-muted rounded" />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Error state */}
+          {!tiersLoading && tiersError && (
+            <p className="text-center text-muted-foreground py-10">
+              Unable to load pricing at this time. Please try again later.
+            </p>
+          )}
+
+          {/* Empty state */}
+          {!tiersLoading && !tiersError && tiers.length === 0 && (
+            <p className="text-center text-muted-foreground py-10">
+              No pricing tiers available yet.
+            </p>
+          )}
+
+          {/* Tier cards */}
+          {!tiersLoading && !tiersError && tiers.length > 0 && (
+            <motion.div
+              variants={container}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-80px" }}
+              className={`mx-auto grid gap-6 ${
+                tiers.length === 1
+                  ? "max-w-sm"
+                  : tiers.length === 2
+                    ? "sm:grid-cols-2 max-w-3xl"
+                    : "sm:grid-cols-2 lg:grid-cols-3 max-w-6xl"
+              }`}
+            >
+              {tiers.map((tier: BusinessTier, i: number) => (
+                <motion.div
+                  key={tier._id}
+                  variants={getItemVariant(i)}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className="h-full"
+                >
+                  <Card className="h-full flex flex-col rounded-2xl border border-white/40 dark:border-white/10 bg-white/80 dark:bg-white/6 backdrop-blur-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:border-primary/40 overflow-hidden">
+                    {/* Coloured top bar */}
+                    <div className="h-1.5 w-full bg-gradient-to-r from-primary to-primaryblue" />
+
+                    <CardHeader className="p-6 pb-3">
+                      <div className="flex items-start justify-between gap-2">
+                        <CardTitle className="text-xl font-bold text-primaryblue  dark:text-white">
+                          {tier.name}
+                        </CardTitle>
+                        {i === 1 && tiers.length >= 3 && (
+                          <span className="shrink-0 text-[10px] font-semibold uppercase tracking-wider bg-primary text-white px-2 py-0.5 rounded-full">
+                            Popular
+                          </span>
+                        )}
+                      </div>
+
+                      {tier.description && (
+                        <CardDescription className="text-sm mt-1 leading-relaxed">
+                          {tier.description}
+                        </CardDescription>
+                      )}
+
+                      {/* Price badge */}
+                      <div className="mt-5 flex items-end gap-1">
+                        <span className="text-3xl font-extrabold text-primaryblue leading-none dark:text-white">
+                          {formatPrice(tier.firstTenDayPrices[0] ?? 0)}
+                        </span>
+                        <span className="text-sm text-muted-foreground mb-0.5 ">
+                          /day
+                        </span>
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        Starting price
+                      </p>
+                    </CardHeader>
+
+                    <div className="mx-6 border-t border-border/60" />
+
+                    <CardContent className="px-6 py-5 flex flex-col flex-1">
+                      {tier.features.length > 0 && (
+                        <ul className="space-y-2.5 flex-1">
+                          {tier.features.map((f: string, idx: number) => (
+                            <li
+                              key={idx}
+                              className="flex items-start gap-2.5 text-sm"
+                            >
+                              <CheckCircle2 className="h-4 w-4 mt-0.5 shrink-0 text-emerald-500 dark:text-primaryblue " />
+                              <span className="text-foreground leading-snug">
+                                {f}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+
+                      <Button
+                        onClick={handleQuickBook}
+                        className="mt-6 w-full rounded-full hover:bg-white hover:text-primary bg-primary text-white "
+                        // variant={
+                        //   i === 1 && tiers.length >= 3 ? "default" : "outline"
+                        // }
+                      >
+                        Book Now
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
+        </div>
+      </section>
+      {/* </ParallaxSection> */}
 
       <ParallaxSection
         image={`${theme === "dark" ? "/dark_parallex2.png" : "/parallex2.png"}`}
       >
-        <section className="relative z-10 px-4 py-14 sm:px-8 sm:py-16 lg:px-16 lg:py-20">
+        <section className="relative z-10 py-14 sm:py-16 lg:py-20">
           <div
-            className={`max-w-5xl mx-auto px-6 py-8 sm:px-10 sm:py-10 lg:px-12 ${parallaxPanelClass}`}
+            className="max-w-5xl mx-auto px-4 py-8 sm:px-8 sm:py-10 lg:px-10"
           >
             {/* Heading */}
             <h2 className="text-4xl sm:text-6xl text-primaryblue text-center font-extrabold font-zuume mb-4 dark:text-white">
@@ -1128,9 +1148,9 @@ export default function CompareHeathrowParking() {
             </motion.div>
           </div>
         </section>
-        <section className="relative z-10 px-4 py-6 sm:px-8 sm:py-8 lg:px-2">
+        <section className="relative z-10 py-6 sm:py-8">
           <div
-            className={`max-w-7xl mx-auto px-6 py-8 sm:px-10 sm:py-10 lg:px-10 ${parallaxPanelClass}`}
+            className="max-w-7xl mx-auto px-4 py-8 sm:px-8 sm:py-10 lg:px-10"
           >
             <div className="grid lg:grid-cols-2  gap-10 items-center">
               {/* LEFT SIDE */}
@@ -1175,8 +1195,8 @@ export default function CompareHeathrowParking() {
                 </div>
               </div>
               <div className="w-full flex justify-center items-center py-20">
-                <div className="relative h-[420px] sm:h-[460px] w-[250px] sm:w-[420px] perspective-[3000px] sm:perspective-[2500px]">
-                      {/* <div className="absolute inset-0 overflow-hidden px-[40px]"> */}
+                <div className="relative h-[420px] sm:h-[460px] w-[250px] sm:w-[350px] perspective-[3000px] sm:perspective-[2500px]">
+                  {/* <div className="absolute inset-0 overflow-hidden px-[40px]"> */}
                   {reviews.map((review, i) => {
                     const offset =
                       (i - index + reviews.length) % reviews.length;
@@ -1234,15 +1254,15 @@ export default function CompareHeathrowParking() {
                           <div className="flex items-center gap-3">
                             <button
                               onClick={prev}
-                              className="p-2 rounded-full hover:bg-gray-200 transition"
+                              className="p-2 rounded-full hover:bg-primary/20 border border-primary transition"
                             >
-                              <ChevronLeft className="w-5 h-5 dark:text-primary" />
+                              <ChevronLeft className="w-5 h-5 text-primary" />
                             </button>
                             <button
                               onClick={next}
-                              className="p-2 rounded-full hover:bg-gray-200 transition"
+                              className="p-2 rounded-full hover:bg-primary/20 border border-primary transition"
                             >
-                              <ChevronRight className="w-5 h-5 dark:text-primary" />
+                              <ChevronRight className="w-5 h-5 text-primary" />
                             </button>
                           </div>
                         </div>
@@ -1268,7 +1288,8 @@ export default function CompareHeathrowParking() {
                       </motion.div>
                     );
                   })}
-                </div></div>
+                </div>
+              </div>
               {/* </div> */}
               {/* <div className="relative h-[420px] sm:h-[460px] perspective">
                 {reviews.map((review, i) => {
@@ -1451,8 +1472,9 @@ export default function CompareHeathrowParking() {
         </section>
 
         {/* ── CTA BANNER ─────────────────────────────────────────────────────── */}
-        <section className="relative z-10 py-10 px-4 sm:px-8 sm:py-14 lg:px-10">
-          <div className="max-w-7xl mx-auto relative rounded-[2rem] overflow-hidden">
+        <section className="relative z-10 py-10 sm:py-14">
+          <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10">
+          <div className="relative rounded-[2rem] overflow-hidden">
             {/* Background Image */}
             <Image
               src="/cta.svg" // replace with your image
@@ -1498,6 +1520,7 @@ export default function CompareHeathrowParking() {
                 </button>
               </div>
             </div>
+          </div>
           </div>
         </section>
       </ParallaxSection>

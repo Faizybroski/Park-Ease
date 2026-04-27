@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Check, ChevronDown } from "lucide-react";
+import { Check, ChevronDown, PlaneTakeoff } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 import {
@@ -39,14 +39,15 @@ export default function AirportPopover({ homepage = false }: Props) {
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className={`w-full rounded-full justify-between border border-primary-light/10 bg-input hover:bg-input data-[state=open]:bg-input text-white h-11 sm:h-14 dark:text-white`}
+            className={`w-full rounded-full justify-between border border-primary-light/10 bg-input hover:bg-input data-[state=open]:bg-input text-white h-11 sm:h-14 dark:text-white dark:bg-white`}
           >
+            <PlaneTakeoff  className={`ml-2 h-4 w-4  ${homepage ? "text-muted-foreground dark:text-primary" : "text-primary"}`} />
             {current ? (
               <div className={`flex flex-col sm:flex-row items-center justify-center gap-2 text-left leading-tight`}>
-                <span className="text-primary text-sm font-medium ">
+                <span className="text-primary text-md font-bold ">
                   {current.label}
                 </span>
-                <span className="hidden sm:block text-xs text-muted-foreground dark:text-white">
+                <span className="hidden sm:block text-xs text-muted-foreground dark:text-ring">
                   {current.subtitle}
                 </span>
               </div>

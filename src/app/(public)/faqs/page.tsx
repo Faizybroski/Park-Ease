@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import PageHero from "@/components/shared/PageHero";
+import { ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const faqs = [
   {
@@ -38,8 +40,26 @@ const faqs = [
   },
 ];
 
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: "easeOut" as const },
+  },
+};
+
 export default function FAQsPage() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
     <div className="min-h-screen bg-background">
@@ -49,7 +69,79 @@ export default function FAQsPage() {
       />
       <section className="py-16 max-w-3xl mx-auto px-4">
         <div className="space-y-2">
-          {faqs.map((faq, i) => (
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="flex flex-col gap-4 max-w-xl mx-auto"
+          >
+            {faqs.map((itemData, i) => {
+              const isOpen = openFaq === i;
+
+              return (
+                <motion.div
+                  key={i}
+                  variants={item}
+                  whileHover={{ y: -3 }}
+                  className={`
+                            rounded-2xl border transition-all duration-300 bg-white hover:scale-105
+                            ${
+                              isOpen
+                                ? "border-primaryblue  shadow-md"
+                                : "border-primary/50  hover:bg-white"
+                            }
+                          `}
+                >
+                  {/* Question */}
+                  <button
+                    onClick={() => setOpenFaq(isOpen ? null : i)}
+                    className="w-full flex items-center justify-between px-6 py-5 text-left"
+                  >
+                    <span className="font-semibold text-primaryblue text-base sm:text-lg pr-4 dark:text-primary">
+                      {itemData.q}
+                    </span>
+
+                    {/* Icon animation */}
+                    <motion.div
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 15,
+                      }}
+                    >
+                      <ChevronDown className="w-5 h-5 text-primaryblue/60 dark:text-primary" />
+                    </motion.div>
+                  </button>
+
+                  {/* Answer animation */}
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        key="content"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{
+                          height: { duration: 0.35 },
+                          opacity: { duration: 0.25 },
+                        }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-6 pb-5">
+                          <p className="text-sm text-gray-600  leading-relaxed dark:text-primary">
+                            {itemData.a}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+          {/* {faqs.map((faq, i) => (
             <div
               key={i}
               className="rounded-xl overflow-hidden transition-colors border bg-card border-primary ring-0 dark:bg-white/20 shadow-lg"
@@ -72,7 +164,7 @@ export default function FAQsPage() {
                 </div>
               )}
             </div>
-          ))}
+          ))} */}
         </div>
       </section>
     </div>

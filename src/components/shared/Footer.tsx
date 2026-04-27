@@ -6,105 +6,118 @@ import { useTheme } from "next-themes";
 import { Phone, Mail, MapPin } from "lucide-react";
 
 export default function Footer() {
-    const { theme } = useTheme();
+  const { theme } = useTheme();
   return (
-    <footer className="relative text-gray-700 overflow-hidden">
-      {/* Top Section */}
-      <div className="max-w-7xl mx-auto px-6 py-16 lg:px-10 grid grid-cols-1 md:grid-cols-4 gap-10">
-        {/* Brand */}
-        <div>
-          <h2 className="font-bold text-lg mb-2">
-            <Image src={`${theme === "dark" ? "/dark_logo.svg" : "/logo.svg"}`} alt="ParkEase" width={200} height={100} />
-          </h2>
-          <p className="text-sm mb-4 dark:text-white dark:opacity-70">
-            The smartest way to find, reserve, and manage parking.
-          </p>
-        </div>
+    <footer className="relative text-gray-700 w-full">
+      {/* All text content shares one container so left edges are identical */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10">
+        {/* Top Section */}
+        <div className="py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
+          {/* Brand */}
+          <div>
+            <h2 className="font-bold text-lg mb-2">
+              <Image
+                src={`${theme === "dark" ? "/dark_logo.svg" : "/logo.svg"}`}
+                alt="ParkEase"
+                width={200}
+                height={100}
+              />
+            </h2>
+            <p className="text-sm mb-4 dark:text-white dark:opacity-70">
+              The smartest way to find, reserve, and manage parking.
+            </p>
+          </div>
 
-        <div>
-          <h4 className="font-bold text-foreground text-base mb-4">
-            Quick Links
-          </h4>
-          <ul className="space-y-2 text-sm">
-            {[
-              { href: "/", label: "Home" },
-              { href: "/book", label: "Book Parking" },
-              { href: "/track", label: "Track Booking" },
-            ].map(({ href, label }) => (
-              <li key={href}>
-                <Link
-                  href={href}
-                  className="opacity-70 hover:opacity-100 dark:text-white transition"
+          <div>
+            <h4 className="font-bold text-foreground text-base mb-4">
+              Quick Links
+            </h4>
+            <ul className="space-y-2 text-sm">
+              {[
+                { href: "/", label: "Home" },
+                { href: "/book", label: "Book Parking" },
+                { href: "/track", label: "Track Booking" },
+              ].map(({ href, label }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className="opacity-70 hover:opacity-100 dark:text-white transition"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Support */}
+          <div>
+            <h4 className="font-bold text-foreground text-base mb-4">Support</h4>
+            <ul className="space-y-2 text-sm">
+              {[
+                { href: "/faqs", label: "FAQs" },
+                { href: "/contact", label: "Contact Us" },
+                { href: "/pricing", label: "Pricing" },
+                { href: "/about", label: "About Us" },
+              ].map(({ href, label }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className="opacity-70 hover:opacity-100 transition dark:text-white"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="font-bold text-foreground text-base mb-4">
+              Contact Us
+            </h4>
+            <div className="space-y-3 text-sm">
+              <div className="flex items-center gap-3 opacity-70 hover:opacity-100 transition">
+                <a href="tel:07508624155" className="dark:text-white">
+                  07508624155
+                </a>
+              </div>
+              <div className="flex items-center gap-3 opacity-70 hover:opacity-100 transition">
+                <a
+                  href="mailto:parkeaseparking@gmail.com"
+                  className="dark:text-white"
                 >
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Support */}
-        <div>
-          <h4 className="font-bold text-foreground text-base mb-4 ">Support</h4>
-          <ul className="space-y-2 text-sm">
-            {[
-              { href: "/faqs", label: "FAQs" },
-              { href: "/contact", label: "Contact Us" },
-              { href: "/pricing", label: "Pricing" },
-              { href: "/about", label: "About Us" },
-            ].map(({ href, label }) => (
-              <li key={href}>
-                <Link
-                  href={href}
-                  className="opacity-70 hover:opacity-100 transition dark:text-white"
-                >
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Contact */}
-        <div>
-          <h4 className="font-bold text-foreground text-base mb-4">
-            Contact Us
-          </h4>
-           <div className="space-y-3 text-sm">
-           {/* <div className="flex items-start gap-3 opacity-70 hover:opacity-100 transition">
-              <a
-                href="https://maps.app.goo.gl/5Kpmej29MWZ5qRbD7"
-                target="_blank"
-                className="leading-snug dark:text-white"
-              >
-                103 Pennine Way <br /> UB3 5LJ
-              </a>
-            </div> */}
-            <div className="flex items-center gap-3 opacity-70 hover:opacity-100 transition">
-              <a href="tel:07508624155" className="dark:text-white">07508624155</a>
-            </div>
-            <div className="flex items-center gap-3 opacity-70 hover:opacity-100 transition">
-              <a href="mailto:parkeaseparking@gmail.com" className="dark:text-white">
-                parkeaseparking@gmail.com
-              </a>
+                  parkeaseparking@gmail.com
+                </a>
+              </div>
             </div>
           </div>
         </div>
+
+        {/* Copyright */}
+        <div className="border-t dark:border-0 py-6 flex flex-col md:flex-row justify-between items-center text-sm dark:text-white">
+          <p>
+            © 2026 PARKEASE. BY{" "}
+            <a
+              href="https://thesocialnexus.co.uk"
+              className="underline hover:opacity-100 transition"
+            >
+              The SOCIAL NEXUS
+            </a>
+            .
+          </p>
+        </div>
       </div>
 
-      {/* Copyright — pb-0 so no gap before VideoMaskText */}
-      <div className="border-t dark:border-0 pt-6 px-6 lg:px-10 flex flex-col md:flex-row justify-between items-center text-sm pb-0 dark:text-white">
-        <p>© 2026 PARKEASE. BY <a href="https://thesocialnexus.co.uk" className="underline hover:opacity-100 transition">The SOCIAL NEXUS</a>.</p>
-      </div>
-
-      {/* Video Mask — flush to bottom, no wrapper tricks needed */}
+      {/* Video Mask — full-width decorative element, flush to bottom */}
       <VideoMaskText />
     </footer>
   );
 }
 
 function VideoMaskText() {
-    const { theme } = useTheme();
+  const { theme } = useTheme();
   return (
     // aspect-ratio drives the height responsively — no fixed h- needed
     <div

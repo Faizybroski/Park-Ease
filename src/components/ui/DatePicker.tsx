@@ -235,19 +235,19 @@ export function DateTimePicker({ value, onChange, homepage = false }: Props) {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       {/* SINGLE TRIGGER */}
-      <PopoverTrigger asChild className={` ${homepage ? " active:bg-white" : "active:bg-white/20"}`}>
+      <PopoverTrigger asChild className={` ${homepage ? " active:bg-white bg-white" : "active:bg-white/20"}`}>
         <Button
           variant="outline"
-          className={`w-full h-11 rounded-md justify-start text-left font-normal border border-ring bg-transparent backdrop-blur-md  ${homepage ? "bg-white rounded-full border-0 h-14" : "hover:bg-white/20 active:bg-white/20 data-[state=open]:bg-white/2" }`}
+          className={`w-full h-11 rounded-full justify-start text-left font-normal border border-primary/50 dark:border-0 bg-transparent backdrop-blur-md  ${homepage ? "bg-white dark:bg-white border-0 h-14" : "hover:bg-white/20 active:bg-white/20 data-[state=open]:bg-white/2" }`}
         >
-          <CalendarIcon className={`mr-2 h-4 w-4  ${homepage ? "text-muted-foreground dark:text-primary" : "text-primary"}`} />
+          <CalendarIcon className={`mr-2 h-4 w-4  ${homepage ? "text-muted-foreground dark:text-primary" : "text-primary  dark:text-primaryblue"}`} />
 
           {date ? (
             <>
-              <span className={` ${homepage ? "text-primary" : "text-primary"}`}>{format(date, "PPP")}</span>
-              <span className={`mx-2   ${homepage ? "text-primary" : "text-primary"}`}>•</span>
+              <span className={` ${homepage ? "text-primary" : "text-primary dark:text-primaryblue"}`}>{format(date, "PPP")}</span>
+              <span className={`mx-2   ${homepage ? "text-primary" : "text-primary  dark:text-primaryblue"}`}>•</span>
               {/* <Clock className={`mr-1 h-4 w-4 text-white`} /> */}
-              <span className={` ${homepage ? "text-primary" : "text-primary"}`}>{time || "00:00"}</span>
+              <span className={` ${homepage ? "text-primary" : "text-primary  dark:text-primaryblue"}`}>{time || "00:00"}</span>
             </>
           ) : (
             <span className={`${homepage ? "text-muted-foreground dark:text-primary/50" : "text-ring dark:text-muted-foreground"}`}>Pick date & time</span>

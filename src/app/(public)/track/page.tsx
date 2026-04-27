@@ -99,8 +99,7 @@ function TrackContent() {
         subtitle="Enter your tracking number to view your booking status"
       />
       <div
-        className="min-h-screen py-12"
-        style={{ background: "var(--muted)" }}
+        className="min-h-screen py-12 bg-background"
       >
         <div className="mx-auto max-w-2xl px-4">
 
@@ -115,7 +114,7 @@ function TrackContent() {
             <button
               type="submit"
               disabled={loading}
-              className="relative overflow-hidden rounded-full px-8 flex justify-center py-3.5 font-bold text-white transition-all hover:opacity-90 disabled:opacity-50 bg-primary hover:bg-white border border-primary hover:text-primary"
+              className="relative overflow-hidden rounded-full px-10 flex justify-center py-3.5 font-bold text-white transition-all hover:opacity-90 disabled:opacity-50 bg-primary hover:bg-white border border-primary hover:text-primary"
             >
               
               {loading ? "..." : "Track"}
@@ -146,7 +145,7 @@ function TrackContent() {
               ) : null;
             })()} */}
 
-            <Card className="flex flex-col items-center rounded-2xl border border-primary bg-card p-6 text-center text-card-foreground ring-0 lg:p-8">
+            <Card className="flex flex-col items-center rounded-2xl border border-primary/50 bg-card dark:bg-white/6 p-6 text-center text-card-foreground ring-0 lg:p-8">
               <Badge
                 className={`inline-flex rounded-full p-4 text-sm font-bold uppercase ${getStatusColor(booking.status)}`}
               >
@@ -186,7 +185,7 @@ function TrackContent() {
               )}
             </Card>
 
-            <Card className="rounded-2xl border border-primary bg-card p-6 text-card-foreground ring-0 lg:p-8">
+            <Card className="rounded-2xl border border-primary/50 bg-card dark:bg-white/6 p-6 text-card-foreground ring-0 lg:p-8">
               <CardHeader className="p-0">
                 <CardTitle className="text-lg font-bold">
                   Booking Details

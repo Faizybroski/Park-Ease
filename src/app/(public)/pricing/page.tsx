@@ -109,14 +109,14 @@ function PricingContent() {
         subtitle="Select your dates, pick a service tier, and book in seconds"
       />
 
-      <div className="min-h-screen py-10 bg-muted/40">
+      <div className="min-h-screen py-10 bg-background">
         <div className="max-w-5xl mx-auto px-4 space-y-8">
 
           {/* ── Date selector card ──────────────────────────────── */}
-          <Card className="rounded-2xl p-6 lg:p-8 bg-card border border-primary ring-0 dark:bg-white/20">
+          <Card className="rounded-2xl p-6 lg:p-8 bg-card border border-primary/50 ring-0 dark:bg-white/6">
             <CardHeader className="p-0">
-              <CardTitle className="flex items-center gap-2 text-lg font-bold mb-1">
-                <CalendarClock className="h-6 w-6 text-primary dark:text-primaryblue" />
+              <CardTitle className="flex items-center gap-2 text-lg font-bold mb-1 text-primary dark:text-primaryblue">
+                <CalendarClock className="h-6 w-6 " />
                 {hasDates
                   ? `Your Dates · ${formatDayCount(localDays!)}`
                   : "Select Your Dates"}
@@ -193,7 +193,7 @@ function PricingContent() {
             <>
               <div className="flex items-center gap-2">
                 <Layers className="h-5 w-5 text-primary dark:text-primaryblue" />
-                <h2 className="text-lg font-bold">
+                <h2 className="text-lg font-bold text-primary dark:text-primaryblue">
                   {hasDates
                     ? `Available Service Tiers — ${formatDayCount(localDays!)}`
                     : "Available Service Tiers"}
@@ -216,10 +216,10 @@ function PricingContent() {
                   return (
                     <Card
                       key={tier._id}
-                      className="rounded-2xl border border-border bg-card ring-0 flex flex-col overflow-hidden hover:border-primary/50 hover:shadow-md transition-all"
+                      className="rounded-2xl border border-primary/50 bg-card dark:bg-white/5 ring-0 flex flex-col overflow-hidden hover:border-primary/50 hover:shadow-md transition-all hover:scale-105 duration-300"
                     >
                       <CardHeader className="p-6 pb-4">
-                        <CardTitle className="text-lg font-bold">
+                        <CardTitle className="text-lg font-bold text-primary dark:text-primaryblue">
                           {tier.name}
                         </CardTitle>
                         {tier.description && (
@@ -273,7 +273,7 @@ function PricingContent() {
                           type="button"
                           disabled={!hasDates}
                           onClick={() => handleBookTier(tier._id)}
-                          className={`relative w-full inline-flex items-center justify-center gap-2 rounded-xl text-sm font-semibold px-5 py-3 transition-opacity overflow-hidden ${
+                          className={`relative w-full inline-flex items-center justify-center gap-2 rounded-full text-sm font-semibold px-5 py-3 transition-opacity overflow-hidden ${
                             hasDates
                               ? "hover:opacity-90 cursor-pointer bg-primary text-white border border-primary hover:text-primary hover:bg-white"
                               : "bg-muted text-muted-foreground cursor-not-allowed"

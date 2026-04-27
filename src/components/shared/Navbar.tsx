@@ -25,7 +25,7 @@ export default function Navbar() {
 
   return (
     // <nav className="fixed top-5 left-1/2 -translate-x-1/2 z-50 shadow-inner rounded-full overflow-hidden bg-white/40 bg-backdrop-lg w-6xl shadow-lg border border-white/20">
-    <nav className="fixed top-5 left-1/2 -translate-x-1/2 z-50 max-w-7xl w-[95%] shadow-inner rounded-full dark:bg-white/40 bg-white/50 dark:backdrop-blur-md backdrop-blur-lg dark:shadow-lg border dark:border-white/20 border-primary/50">
+    <nav className="fixed top-5 left-1/2 -translate-x-1/2 z-50 max-w-7xl w-[94%] shadow-inner rounded-full  bg-white/30  backdrop-blur-xs shadow-[inset_0_2px_4px_0_rgba(0,0,0,0.06),0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-2px_rgba(0,0,0,0.05)] border dark:border-white/20 border-primary/50">
       {/* <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 h-20 flex items-center justify-between"> */}
       <div className="relative flex items-center justify-between h-16 px-4 sm:px-6">
         <button
@@ -45,7 +45,7 @@ export default function Navbar() {
 
         <div className="absolute left-1/2 -translate-x-1/2">
           <Link href="/">
-            <Image src="/logo.svg" alt="Logo" width={130} height={40} />
+            <Image src="/logo.svg" alt="Logo" width={170} height={80} />
           </Link>
         </div>
         {/* <Link href="/" className="flex items-center shrink-0">
@@ -57,7 +57,7 @@ export default function Navbar() {
           <button>
             <Link
               href="/pricing"
-              className="hidden lg:block bg-white text-primary text-sm font-bold px-6 py-2 rounded-full  hover:bg-primary/90 hover:text-white transition-colors border border-primary dark:border-0"
+              className="hidden lg:block bg-white text-primary text-md font-bold px-6 py-2 rounded-full  hover:bg-primary/90 hover:text-white transition-colors border border-primary dark:border-0"
             >
               Book Now
             </Link>
@@ -66,7 +66,7 @@ export default function Navbar() {
 
         {isOpen && (
           <div
-            className={`absolute top-[70px] z-50 left-1/2 -translate-x-1/2 max-w-6xl w-[95%] p-4 rounded-2xl border border-white/20 bg-white dark:bg-background backdrop-blur-xl shadow-lg transition-all duration-300 ease-in-out ${isOpen ? "opacity-100 scale-100 translate-y-0 pointer-events-auto" : "opacity-0 scale-95 -translate-y-2 pointer-events-none"}`}
+            className={`absolute top-[70px] z-50 left-1/2 -translate-x-1/2 max-w-7xl w-[100%] p-4 rounded-2xl border border-white/20 bg-white dark:bg-background backdrop-blur-xl shadow-lg transition-all duration-300 ease-in-out ${isOpen ? "opacity-100 scale-100 translate-y-0 pointer-events-auto" : "opacity-0 scale-95 -translate-y-2 pointer-events-none"}`}
           >
             <div className="flex flex-col gap-2">
               {navLinks.map((link) => {

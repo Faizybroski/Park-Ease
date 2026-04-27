@@ -375,7 +375,7 @@ function BookingFormContent() {
               {/*  BOOKING SUMMARY (when coming from pricing)   */}
               {/* ══════════════════════════════════════════════ */}
               {tierPreSelected && selectedTier && (
-                <Card className="rounded-2xl p-5 bg-primary/5 text-card-foreground border border-primary ring-0">
+                <Card className="rounded-2xl p-5 bg-primary/5 dark:bg-white/6 text-card-foreground border border-primary/50 ring-0">
                   <CardContent className="p-0 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
@@ -408,10 +408,10 @@ function BookingFormContent() {
               {/* ══════════════════════════════════════════════ */}
               {/*  DATES SECTION                                */}
               {/* ══════════════════════════════════════════════ */}
-              <Card className="rounded-2xl p-6 lg:p-8 bg-card text-card-foreground border border-primary ring-0">
+              <Card className="rounded-2xl p-6 lg:p-8 bg-card dark:bg-white/6 text-card-foreground border border-primary/50 ring-0">
                 <CardHeader className="p-0">
-                  <CardTitle className="flex items-center gap-2 text-lg font-bold mb-4">
-                    <CalendarClock className="h-6 w-6 text-primary dark:text-primaryblue" />
+                  <CardTitle className="flex items-center gap-2 text-lg font-bold mb-4 text-primary dark:text-primaryblue">
+                    <CalendarClock className="h-6 w-6 " />
                     Parking Dates
                   </CardTitle>
                 </CardHeader>
@@ -468,10 +468,10 @@ function BookingFormContent() {
               {/*  SERVICE TIER SELECTOR                        */}
               {/* ══════════════════════════════════════════════ */}
               {hasDates && tiers.length > 0 && !tierPreSelected && (
-                <Card className="rounded-2xl p-6 lg:p-8 bg-card text-card-foreground border border-primary ring-0">
+                <Card className="rounded-2xl p-6 lg:p-8 bg-card dark:bg-white/6 text-card-foreground border border-primary/50 ring-0">
                   <CardHeader className="p-0">
-                    <CardTitle className="flex items-center gap-2 text-lg font-bold mb-1">
-                      <Layers className="h-6 w-6 text-primary dark:text-primaryblue" />
+                    <CardTitle className="flex items-center gap-2 text-lg font-bold mb-1 text-primary dark:text-primaryblue">
+                      <Layers className="h-6 w-6 " />
                       Choose Your Service Tier
                     </CardTitle>
                     <CardDescription>
@@ -582,10 +582,10 @@ function BookingFormContent() {
               {/* ══════════════════════════════════════════════ */}
               {/*  PERSONAL DETAILS SECTION                     */}
               {/* ══════════════════════════════════════════════ */}
-              <Card className="rounded-2xl p-6 lg:p-8 bg-card text-card-foreground border border-primary ring-0">
+              <Card className="rounded-2xl p-6 lg:p-8 bg-card dark:bg-white/6 text-card-foreground border border-primary/50 ring-0">
                 <CardHeader className="p-0">
-                  <CardTitle className="flex items-center gap-2 text-lg font-bold mb-4">
-                    <User className="h-6 w-6 text-primary dark:text-primaryblue" />
+                  <CardTitle className="flex items-center gap-2 text-lg font-bold mb-4 text-primary dark:text-primaryblue">
+                    <User className="h-6 w-6" />
                     Personal Details
                   </CardTitle>
                 </CardHeader>
@@ -675,10 +675,10 @@ function BookingFormContent() {
               {/* ══════════════════════════════════════════════ */}
               {/*  VEHICLE DETAILS SECTION                      */}
               {/* ══════════════════════════════════════════════ */}
-              <Card className="rounded-2xl p-6 lg:p-8 bg-card text-card-foreground border border-primary ring-0">
+              <Card className="rounded-2xl p-6 lg:p-8 bg-card dark:bg-white/6 text-card-foreground border border-primary/50 ring-0">
                 <CardHeader className="p-0">
-                  <CardTitle className="flex items-center gap-2 text-lg font-bold mb-4">
-                    <Car className="h-6 w-6 text-primary dark:text-primaryblue" />
+                  <CardTitle className="flex items-center gap-2 text-lg font-bold mb-4 text-primary dark:text-primaryblue">
+                    <Car className="h-6 w-6" />
                     Vehicle Details
                   </CardTitle>
                 </CardHeader>
@@ -792,10 +792,10 @@ function BookingFormContent() {
               {/* ══════════════════════════════════════════════ */}
               {/*  FLIGHT DETAILS (OPTIONAL)                    */}
               {/* ══════════════════════════════════════════════ */}
-              <Card className="rounded-2xl p-6 lg:p-8 bg-card text-card-foreground border border-primary ring-0">
+              <Card className="rounded-2xl p-6 lg:p-8 bg-card dark:bg-white/6 text-card-foreground border border-primary/50 ring-0">
                 <CardHeader className="p-0">
-                  <CardTitle className="flex items-center gap-2 text-lg font-bold mb-4">
-                    <PlaneTakeoff className="h-6 w-6 text-primary dark:text-primaryblue" />
+                  <CardTitle className="flex items-center gap-2 text-lg font-bold mb-4 text-primary dark:text-primaryblue">
+                    <PlaneTakeoff className="h-6 w-6" />
                     Flight Details
                   </CardTitle>
                   <CardDescription>
@@ -869,7 +869,7 @@ function BookingFormContent() {
                   pending || !hasDates || needsTierSelection || price.loading
                 }
                 onClick={handleBook}
-                className={`bg-primary relative w-full inline-flex items-center justify-center gap-2 rounded-xl text-base font-semibold px-6 py-4 transition-opacity
+                className={`bg-primary border border-primary relative w-full inline-flex items-center justify-center gap-2 rounded-full text-base font-semibold px-6 py-4 transition-opacity hover:bg-white hover:text-primary
                   ${
                     !hasDates || needsTierSelection || price.loading
                       ? "bg-muted text-muted-foreground cursor-not-allowed"

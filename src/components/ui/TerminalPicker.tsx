@@ -42,7 +42,7 @@ export function TerminalSelect({
           <Button
             variant="outline"
             role="combobox"
-            className="pl-9 w-full h-11 rounded-md text-primary justify-between  border-primary-light/10 bg-input hover:bg-input focus-visible:border-primary focus-visible:ring-3 focus-visible:ring-primary/50 border border-primary-light/10 data-[state=open]:bg-white/20 data-[state=open]:border-primary data-[state=open]:ring-3 data-[state=open]:ring-primary/50"
+            className="pl-9 w-full h-11 rounded-full text-primary justify-between  border-primary/20 dark:border-0 bg-input hover:bg-input focus-visible:border-primary focus-visible:ring-3 focus-visible:ring-primary/50 border border-primary-light/10 data-[state=open]:bg-white/20 data-[state=open]:border-primary data-[state=open]:ring-3 data-[state=open]:ring-primary/50"
           >
             {value || placeholder}
             <ChevronsUpDown className="ml-2 h-4 w-4 opacity-50" />

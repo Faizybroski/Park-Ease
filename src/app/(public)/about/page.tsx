@@ -40,8 +40,8 @@ export default function AboutPage() {
       />
       <section className="py-16 max-w-4xl mx-auto px-4">
         <div className="space-y-8">
-          <div className="rounded-2xl p-8 border bg-card border-primary ring-0 dark:bg-white/20 shadow-lg hover:bg-primary/5">
-            <h2 className="text-2xl font-bold mb-4 text-foreground">
+          <div className="rounded-2xl p-8 border bg-card border-primary/50  dark:bg-white/6 ring-0 shadow-lg hover:bg-primary/5">
+            <h2 className="text-2xl font-bold mb-4 text-primary dark:text-primaryblue">
               Our Mission
             </h2>
             <p className="leading-relaxed text-muted-foreground">
@@ -58,14 +58,14 @@ export default function AboutPage() {
               return (
                 <div
                   key={i}
-                  className="rounded-2xl p-6 text-center border bg-card border-primary ring-0 dark:bg-white/20 shadow-lg hover:bg-primary/5"
+                  className="rounded-2xl p-6 text-center border border-primary/50 bg-card dark:bg-white/6  ring-0  shadow-lg hover:bg-primary/5 hover:scale-105 duration-300"
                 >
                   <div
                     className={`w-14 h-14 mx-auto flex items-center justify-center rounded-xl mb-4 ${item.bg} transition`}
                   >
                     <Icon className={`w-7 h-7 ${item.color}`} />
                   </div>
-                  <h3 className="font-bold mb-2 text-foreground">
+                  <h3 className="font-bold mb-2   dark:text-primaryblue text-primary">
                     {item.title}
                   </h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -75,8 +75,8 @@ export default function AboutPage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="rounded-2xl p-8 border bg-card border-primary ring-0 dark:bg-white/20 shadow-lg hover:bg-primary/5">
-              <h2 className="text-xl font-bold mb-3 text-foreground">
+            <div className="rounded-2xl p-8 border bg-card border-primary/50  ring-0 dark:bg-white/6 shadow-lg hover:bg-primary/5 hover:scale-105 duration-300">
+              <h2 className="text-xl font-bold mb-3 text-primary dark:text-primaryblue">
                 Secure & Monitored
               </h2>
               <p className="leading-relaxed text-muted-foreground text-sm">
@@ -86,8 +86,8 @@ export default function AboutPage() {
                 you travel.
               </p>
             </div>
-            <div className="rounded-2xl p-8 border bg-card border-primary ring-0 dark:bg-white/20 shadow-lg hover:bg-primary/5">
-              <h2 className="text-xl font-bold mb-3 text-foreground">
+            <div className="rounded-2xl p-8 border bg-card border-primary/50 ring-0 dark:bg-white/6 shadow-lg hover:bg-primary/5 hover:scale-105 duration-300">
+              <h2 className="text-xl font-bold mb-3 text-primary dark:text-primaryblue">
                 Hassle-Free Booking
               </h2>
               <p className="leading-relaxed text-muted-foreground text-sm">
