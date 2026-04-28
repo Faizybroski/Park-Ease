@@ -52,7 +52,9 @@ export default function Footer() {
 
           {/* Support */}
           <div>
-            <h4 className="font-bold text-foreground text-base mb-4">Support</h4>
+            <h4 className="font-bold text-foreground text-base mb-4">
+              Support
+            </h4>
             <ul className="space-y-2 text-sm">
               {[
                 { href: "/faqs", label: "FAQs" },
@@ -117,7 +119,10 @@ export default function Footer() {
 }
 
 function VideoMaskText() {
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
+
+    const bgColor =
+    resolvedTheme === "dark" ? "#010e1a" : "#ffffff";
   return (
     // aspect-ratio drives the height responsively — no fixed h- needed
     <div
@@ -144,7 +149,7 @@ function VideoMaskText() {
         <defs>
           <mask id="text-mask">
             {/* White = show the rect (background colour) */}
-            <rect width="100%" height="100%" fill="white" />
+            <rect width="100%" height="100%" fill="white"  />
             {/* Black = punch through to video beneath */}
             <text
               x="700"
@@ -166,7 +171,8 @@ function VideoMaskText() {
         <rect
           width="100%"
           height="100%"
-          fill={`${theme === "dark" ? "#010e1a" : "#ffffff"}`}
+          // fill={`${theme === "dark" ? "#010e1a" : "#ffffff"}`}
+          fill={bgColor}
           mask="url(#text-mask)"
         />
       </svg>

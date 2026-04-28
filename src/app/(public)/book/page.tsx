@@ -813,6 +813,7 @@ function BookingFormContent() {
                           <TerminalSelect
                             value={field.value}
                             onChange={field.onChange}
+                            
                           />
                         </FormControl>
                         <FormMessage />
@@ -830,6 +831,7 @@ function BookingFormContent() {
                           <TerminalSelect
                             value={field.value}
                             onChange={field.onChange}
+                            landing
                           />
                         </FormControl>
                         <FormMessage />

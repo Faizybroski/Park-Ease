@@ -51,6 +51,10 @@ function PricingContent() {
   const [tiersLoading, setTiersLoading] = useState(true);
   const [tiersError, setTiersError] = useState(false);
 
+    const order = ["Normal", "Wallet Parking", "VIP Meet and Greet"]; // example
+  const sortedTiers = [...tiers].sort(
+    (a, b) => order.indexOf(a.name) - order.indexOf(b.name),
+      );
   useEffect(() => {
     api
       .getPublicTiers()
@@ -209,7 +213,8 @@ function PricingContent() {
                       : "sm:grid-cols-2 lg:grid-cols-3"
                 }`}
               >
-                {tiers.map((tier) => {
+                {/* {tiers.map((tier) => { */}
+                {sortedTiers.map((tier) => {
                   const tierPrice =
                     localDays !== null ? calcTierPrice(localDays, tier) : null;
 
