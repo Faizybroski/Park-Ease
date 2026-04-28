@@ -464,6 +464,11 @@ export default function CompareHeathrowParking() {
     loading: true,
   });
 
+  const order = ["Normal", "Wallet Parking", "VIP Meet and Greet"]; // example
+
+  const sortedTiers = [...tiers].sort(
+    (a, b) => order.indexOf(a.name) - order.indexOf(b.name),
+  );
   // const next = () => {
   //   setDirection(1);
   //   setIndex((prev) => (prev + 1) % reviews.length);
@@ -490,7 +495,6 @@ export default function CompareHeathrowParking() {
     const frameCount = 107; // your total frames
     // const frameCount = 65; // your total frames
 
-
     const currentFrame = (index: number) =>
       `/scroll-trigger-animation/ezgif-frame-${String(index).padStart(3, "0")}.jpg`;
     // `/compressedImages/P (${index}).png`
@@ -500,7 +504,7 @@ export default function CompareHeathrowParking() {
 
     // Preload images
     for (let i = 1; i <= frameCount; i++) {
-    // for (let i = 2; i <= frameCount; i++) {
+      // for (let i = 2; i <= frameCount; i++) {
 
       const img = new window.Image();
       img.src = currentFrame(i);
@@ -820,9 +824,7 @@ export default function CompareHeathrowParking() {
           </div> */}
 
           {/* Content */}
-          <div
-            className="relative z-10 max-w-7xl mx-auto px-4 py-8 sm:px-8 sm:pt-10 sm:pb-2 lg:px-10"
-          >
+          <div className="relative z-10 max-w-7xl mx-auto px-4 py-8 sm:px-8 sm:pt-10 sm:pb-2 lg:px-10">
             {/* Heading */}
             <h2 className="font-bold tracking-tight mb-6">
               <span className="text-4xl sm:text-7xl text-primaryblue dark:text-white font-extrabold font-zuume">
@@ -876,9 +878,7 @@ export default function CompareHeathrowParking() {
         </section>
 
         <section className="relative z-10">
-          <div
-            className="max-w-7xl mx-auto px-4 py-6 sm:px-8 sm:py-8 lg:px-10"
-          >
+          <div className="max-w-7xl mx-auto px-4 py-6 sm:px-8 sm:py-8 lg:px-10">
             <div className="flex sm:flex-row flex-col justify-between gap-10 text-center py-10 border-t">
               <div>
                 <h3 className="text-4xl sm:text-5xl font-bold text-primaryblue dark:text-white mb-2">
@@ -915,9 +915,7 @@ export default function CompareHeathrowParking() {
       {/* <ParallaxBanner src="/parallex1.png" fromColor="#ffffff" toColor="#ffffff" /> */}
 
       <section className="relative z-10 py-6 sm:py-8 lg:pb-20">
-        <div
-          className="mx-auto max-w-7xl px-4 py-10 sm:px-8 sm:py-12 lg:px-10 bg-[url('/greenradial.png')]"
-        >
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-8 sm:py-12 lg:px-10 bg-[url('/greenradial.png')]">
           <h2 className="text-4xl sm:text-7xl text-primaryblue text-center font-extrabold font-zuume dark:text-white">
             Daily Pricing
           </h2>
@@ -976,7 +974,8 @@ export default function CompareHeathrowParking() {
                     : "sm:grid-cols-2 lg:grid-cols-3 max-w-6xl"
               }`}
             >
-              {tiers.map((tier: BusinessTier, i: number) => (
+              {/* {tiers.map((tier: BusinessTier, i: number) => ( */}
+              {sortedTiers.map((tier: BusinessTier, i: number) => (
                 <motion.div
                   key={tier._id}
                   variants={getItemVariant(i)}
@@ -985,7 +984,7 @@ export default function CompareHeathrowParking() {
                 >
                   <Card className="h-full flex flex-col rounded-2xl border border-white/40 dark:border-white/10 bg-white/80 dark:bg-white/6 backdrop-blur-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:border-primary/40 overflow-hidden">
                     {/* Coloured top bar */}
-                    <div className="h-1.5 w-full bg-gradient-to-r from-primary to-primaryblue" />
+                    <div className="h-1.5 w-full bg-linear-to-r from-primary to-primaryblue" />
 
                     <CardHeader className="p-6 pb-3">
                       <div className="flex items-start justify-between gap-2">
@@ -1061,9 +1060,7 @@ export default function CompareHeathrowParking() {
         image={`${theme === "dark" ? "/dark_parallex2.png" : "/parallex2.png"}`}
       >
         <section className="relative z-10 py-14 sm:py-16 lg:py-20">
-          <div
-            className="max-w-5xl mx-auto px-4 py-8 sm:px-8 sm:py-10 lg:px-10"
-          >
+          <div className="max-w-5xl mx-auto px-4 py-8 sm:px-8 sm:py-10 lg:px-10">
             {/* Heading */}
             <h2 className="text-4xl sm:text-6xl text-primaryblue text-center font-extrabold font-zuume mb-4 dark:text-white">
               FREQUENTLY ASKED QUESTIONS
@@ -1149,9 +1146,7 @@ export default function CompareHeathrowParking() {
           </div>
         </section>
         <section className="relative z-10 py-6 sm:py-8">
-          <div
-            className="max-w-7xl mx-auto px-4 py-8 sm:px-8 sm:py-10 lg:px-10"
-          >
+          <div className="max-w-7xl mx-auto px-4 py-8 sm:px-8 sm:py-10 lg:px-10">
             <div className="grid lg:grid-cols-2  gap-10 items-center">
               {/* LEFT SIDE */}
               <div>
@@ -1474,53 +1469,53 @@ export default function CompareHeathrowParking() {
         {/* ── CTA BANNER ─────────────────────────────────────────────────────── */}
         <section className="relative z-10 py-10 sm:py-14">
           <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10">
-          <div className="relative rounded-[2rem] overflow-hidden">
-            {/* Background Image */}
-            <Image
-              src="/cta.svg" // replace with your image
-              alt=""
-              fill
-              className="absolute inset-0 w-full h-full object-cover"
-            />
+            <div className="relative rounded-[2rem] overflow-hidden">
+              {/* Background Image */}
+              <Image
+                src="/cta.svg" // replace with your image
+                alt=""
+                fill
+                className="absolute inset-0 w-full h-full object-cover"
+              />
 
-            {/* Dark overlay */}
-            <div className="absolute inset-0 bg-black/10" />
+              {/* Dark overlay */}
+              <div className="absolute inset-0 bg-black/10" />
 
-            {/* Glass container */}
-            <div className="relative z-10 m-4 sm:m-6 rounded-[1.5rem] border border-white/20 bg-white/5 backdrop-blur-sm px-6 sm:px-12 py-10 sm:py-14 text-center">
-              {/* Heading */}
-              <h2 className="text-white font-bold text-2xl sm:text-4xl lg:text-5xl mb-4">
-                Ready to Save on Airport Parking?
-              </h2>
+              {/* Glass container */}
+              <div className="relative z-10 m-4 sm:m-6 rounded-[1.5rem] border border-white/20 bg-white/5 backdrop-blur-sm px-6 sm:px-12 py-10 sm:py-14 text-center">
+                {/* Heading */}
+                <h2 className="text-white font-bold text-2xl sm:text-4xl lg:text-5xl mb-4">
+                  Ready to Save on Airport Parking?
+                </h2>
 
-              {/* Subtext */}
-              <p className="text-white/80 text-sm sm:text-base max-w-2xl mx-auto mb-8">
-                Join millions of smart travellers who compare and book with
-                Heathrow safe Parking. Enter your dates and let&apos;s find you
-                the best deal.
-              </p>
+                {/* Subtext */}
+                <p className="text-white/80 text-sm sm:text-base max-w-2xl mx-auto mb-8">
+                  Join millions of smart travellers who compare and book with
+                  Heathrow safe Parking. Enter your dates and let&apos;s find
+                  you the best deal.
+                </p>
 
-              {/* Input + Button */}
-              <div className="mx-auto flex max-w-2xl flex-col gap-3 rounded-[1.75rem] bg-white/90 p-3 shadow-lg sm:flex-row sm:items-center sm:gap-0 sm:rounded-full sm:p-2">
-                {/* Input */}
-                <div className="flex items-center flex-1 px-4">
-                  <span className="text-gray-400 dark:text-slate-400 mr-2">
-                    <Plane />
-                  </span>
-                  <input
-                    type="text"
-                    placeholder="Which airport?"
-                    className="w-full bg-transparent outline-none text-gray-700 dark:text-slate-700 placeholder-gray-400 text-sm"
-                  />
+                {/* Input + Button */}
+                <div className="mx-auto flex max-w-2xl flex-col gap-3 rounded-[1.75rem] bg-white/90 p-3 shadow-lg sm:flex-row sm:items-center sm:gap-0 sm:rounded-full sm:p-2">
+                  {/* Input */}
+                  <div className="flex items-center flex-1 px-4">
+                    <span className="text-gray-400 dark:text-slate-400 mr-2">
+                      <Plane />
+                    </span>
+                    <input
+                      type="text"
+                      placeholder="Which airport?"
+                      className="w-full bg-transparent outline-none text-gray-700 dark:text-slate-700 placeholder-gray-400 text-sm"
+                    />
+                  </div>
+
+                  {/* Button */}
+                  <button className="w-full bg-primary text-white px-6 sm:px-8 py-3 rounded-full font-semibold text-sm sm:text-base hover:opacity-90 transition sm:w-auto">
+                    Find Parking
+                  </button>
                 </div>
-
-                {/* Button */}
-                <button className="w-full bg-primary text-white px-6 sm:px-8 py-3 rounded-full font-semibold text-sm sm:text-base hover:opacity-90 transition sm:w-auto">
-                  Find Parking
-                </button>
               </div>
             </div>
-          </div>
           </div>
         </section>
       </ParallaxSection>
