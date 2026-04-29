@@ -464,11 +464,6 @@ export default function CompareHeathrowParking() {
     loading: true,
   });
 
-  const order = ["Normal", "Wallet Parking", "VIP Meet and Greet"]; // example
-
-  const sortedTiers = [...tiers].sort(
-    (a, b) => order.indexOf(a.name) - order.indexOf(b.name),
-  );
   // const next = () => {
   //   setDirection(1);
   //   setIndex((prev) => (prev + 1) % reviews.length);
@@ -975,7 +970,7 @@ export default function CompareHeathrowParking() {
               }`}
             >
               {/* {tiers.map((tier: BusinessTier, i: number) => ( */}
-              {sortedTiers.map((tier: BusinessTier, i: number) => (
+              {tiers.map((tier: BusinessTier, i: number) => (
                 <motion.div
                   key={tier._id}
                   variants={getItemVariant(i)}
