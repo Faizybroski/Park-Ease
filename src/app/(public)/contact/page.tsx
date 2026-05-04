@@ -47,7 +47,7 @@ const items = [
   {
     icon: Phone,
     title: "Phone",
-    value: "07508624155",
+    value: "07927970960",
     color: "text-green-600 dark:text-green-400",
     bg: "bg-green-100 dark:bg-green-900/30",
   },
