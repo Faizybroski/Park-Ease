@@ -1178,9 +1178,12 @@ export default function CompareHeathrowParking() {
                     </p>
 
                     {/* Button */}
-                    <button className="w-full max-w-md bg-white text-primary font-semibold py-3 rounded-full shadow-lg hover:bg-white/90 transition">
-                      Book Now
-                    </button>
+                    <Button
+                      asChild
+                      className="w-full max-w-md bg-white text-primary font-semibold py-3 rounded-full shadow-lg hover:bg-white/90 transition"
+                    >
+                      <Link href="/pricing">Book Now</Link>
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -1491,24 +1494,12 @@ export default function CompareHeathrowParking() {
                 </p>
 
                 {/* Input + Button */}
-                <div className="mx-auto flex max-w-2xl flex-col gap-3 rounded-[1.75rem] bg-white/90 p-3 shadow-lg sm:flex-row sm:items-center sm:gap-0 sm:rounded-full sm:p-2">
-                  {/* Input */}
-                  <div className="flex items-center flex-1 px-4">
-                    <span className="text-gray-400 dark:text-slate-400 mr-2">
-                      <Plane />
-                    </span>
-                    <input
-                      type="text"
-                      placeholder="Which airport?"
-                      className="w-full bg-transparent outline-none text-gray-700 dark:text-slate-700 placeholder-gray-400 text-sm"
-                    />
-                  </div>
-
-                  {/* Button */}
-                  <button className="w-full bg-primary text-white px-6 sm:px-8 py-3 rounded-full font-semibold text-sm sm:text-base hover:opacity-90 transition sm:w-auto">
-                    Find Parking
-                  </button>
-                </div>
+                <Link
+                  href="/pricing"
+                  className="inline-flex items-center justify-center bg-primary text-white px-8 py-3 rounded-full font-semibold text-sm sm:text-base hover:opacity-90 transition"
+                >
+                  View Prices & Plans
+                </Link>
               </div>
             </div>
           </div>

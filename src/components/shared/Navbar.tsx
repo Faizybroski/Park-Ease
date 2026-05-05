@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import ThemeToggle from "@/components/ToggleTheme";
 import { Menu, X, TextAlignStart } from "lucide-react";
@@ -20,8 +20,28 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+
+  const sensitiveRoutes = ["/book", "/pricing"];
 
   if (pathname.startsWith("/admin")) return null;
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    if (pathname === "/") {
+      e.preventDefault();
+      return;
+    }
+
+    if (sensitiveRoutes.includes(pathname)) {
+      const confirmed = window.confirm(
+        "You have an active booking in progress. Are you sure you want to leave?",
+      );
+
+      if (!confirmed) {
+        e.preventDefault();
+      }
+    }
+  };
 
   return (
     // <nav className="fixed top-5 left-1/2 -translate-x-1/2 z-50 shadow-inner rounded-full overflow-hidden bg-white/40 bg-backdrop-lg w-6xl shadow-lg border border-white/20">
@@ -44,7 +64,7 @@ export default function Navbar() {
         </button>
 
         <div className="absolute left-1/2 -translate-x-1/2">
-          <Link href="/">
+          <Link href="/" onClick={handleLogoClick}>
             <Image src="/logo.svg" alt="Logo" width={170} height={80} />
           </Link>
         </div>
