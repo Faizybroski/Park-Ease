@@ -32,7 +32,7 @@ export default function SupportPage() {
             <div className="rounded-2xl border p-6" style={{ background: 'var(--card)', borderColor: 'var(--border)' }}>
               <h3 className="font-bold mb-2" style={{ color: 'var(--foreground)' }}>Emergency Contact</h3>
               <p className="text-sm" style={{ color: 'var(--muted-foreground)' }}>For urgent matters, call us at:</p>
-              <p className="text-lg font-bold mt-2" style={{ color: 'var(--primary)' }}>+44 20 7946 0958</p>
+              <p className="text-lg font-bold mt-2" style={{ color: 'var(--primary)' }}>07927 970960</p>
               <p className="text-xs mt-1" style={{ color: 'var(--muted-foreground)' }}>Available 24/7</p>
             </div>
           </div>

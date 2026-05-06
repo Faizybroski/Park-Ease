@@ -40,7 +40,7 @@ const items = [
   {
   icon: MessageCircle,
   title: "WhatsApp",
-  value: "+44 7508 624155",
+  value: "07927970960",
   color: "text-emerald-600 dark:text-emerald-400",
   bg: "bg-emerald-100 dark:bg-emerald-900/30",
 },
