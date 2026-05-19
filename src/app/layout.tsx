@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
-import { Providers } from "@/components/theme-provider"
+import { Providers } from "@/components/theme-provider";
+import Script from "next/script";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -35,6 +36,18 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18050069615"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-18050069615');
+          `}
+        </Script>
       </head>
       <body className="antialiased min-h-screen flex flex-col">
         {/* <LayoutClient> */}
@@ -43,9 +56,7 @@ export default function RootLayout({
         {/* {admin ? null : <Navbar />}
         <main className="flex-1 pt-16">{children}</main>
         {admin ? null : <Footer />} */}
-        <Providers>
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
